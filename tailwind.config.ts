@@ -55,19 +55,24 @@ const config: Config = {
           deep: "#8a6f14",
         },
         royal: {
-          DEFAULT: "#1b6fe8",
-          soft: "#4f92f2",
+          DEFAULT: "#2e7be8",
+          soft: "#5fa8ff",
         },
+        // Cor de ação principal — azul (substitui o verde da versão anterior).
         cta: {
-          DEFAULT: "#1f9e4a",
-          hover: "#178a3f",
+          DEFAULT: "#1b6fe8",
+          hover: "#175fc7",
         },
         danger: "#c1121f",
         highlight: "#fff59d",
-        success: "#22c55e",
+        // "Positivo / confirmação" nesta marca é azul, não verde — assim todos os
+        // ícones de check (text-success) viram azuis sem editar componente por componente.
+        success: "#2e7be8",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Corpo/subtítulos: fonte arredondada, padronizada em todo o site.
+        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Só os títulos usam serifa editorial.
         display: ["var(--font-playfair)", "Georgia", "Times New Roman", "serif"],
       },
       fontSize: {

@@ -14,33 +14,35 @@
   /* Valores em "R G B" (sem vírgulas) para o Tailwind conseguir aplicar  */
   /* o modificador de opacidade — bg-surface/50 continua funcionando.     */
   /* ------------------------------------------------------------------ */
-  .theme-green,
+  /* Tema A — navy profundo (seções ímpares). */
+  .theme-deep,
   main > section:nth-child(odd) {
-    --c-bg: 8 18 14;
-    --c-surface: 21 37 29;
-    --c-surface-2: 29 49 38;
-    --c-border: 42 64 50;
-    --c-muted: 163 173 165;
+    --c-bg: 8 15 30;
+    --c-surface: 16 27 48;
+    --c-surface-2: 24 38 64;
+    --c-border: 34 50 78;
+    --c-muted: 154 168 190;
   }
 
-  .theme-navy,
+  /* Tema B — azul-meia-noite, um tom acima (seções pares + rodapé). */
+  .theme-blue,
   main > section:nth-child(even),
   body > footer {
-    --c-bg: 10 18 32;
-    --c-surface: 17 28 48;
-    --c-surface-2: 23 38 62;
-    --c-border: 33 47 72;
-    --c-muted: 165 175 190;
+    --c-bg: 11 21 42;
+    --c-surface: 19 33 60;
+    --c-surface-2: 28 44 74;
+    --c-border: 40 58 92;
+    --c-muted: 160 174 196;
   }
 
   :root {
     color-scheme: dark;
     /* fallback do body, antes de qualquer seção */
-    --c-bg: 10 20 16;
-    --c-surface: 16 28 22;
-    --c-surface-2: 22 38 30;
-    --c-border: 32 50 39;
-    --c-muted: 163 173 165;
+    --c-bg: 8 15 30;
+    --c-surface: 16 27 48;
+    --c-surface-2: 24 38 64;
+    --c-border: 34 50 78;
+    --c-muted: 154 168 190;
   }
 
   html {

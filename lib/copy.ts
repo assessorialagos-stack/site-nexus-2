@@ -4,15 +4,15 @@
  * Todo o texto exibido no site mora neste arquivo. Os componentes não devem
  * conter strings de conteúdo hardcoded: para ajustar a copy, edite só aqui.
  *
- * REGRAS DE CONTEÚDO (v1):
- * - Nenhuma menção a CNPJ, razão social ou nome real do dono.
- * - O responsável é sempre referido como "[Especialista Nexus]".
+ * REGRAS DE CONTEÚDO:
+ * - Nenhuma menção a CNPJ ou razão social.
+ * - O responsável é referido como "Especialista Roberto".
  */
 
 export const brand = {
   name: "Nexus Crédito",
   product: "Diagnóstico Nexus do Rating Bancário",
-  specialist: "[Especialista Nexus]",
+  specialist: "Especialista Roberto",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -22,7 +22,8 @@ export const brand = {
 export const hero = {
   h1: "Quer saber, na real, quanto o seu CPF deveria ter liberado de crédito?",
   badges: ["Sem cadastro", "Sem cartão"],
-  videoPlaceholderLabel: "PLACEHOLDER · VÍDEO VSL",
+  // Vazio = sem rótulo de placeholder (o slot da VSL segue no lugar até o vídeo real entrar).
+  videoPlaceholderLabel: "",
   videoCaption: "Toque para assistir",
   cta: "Quero ver o meu agora →",
   ctaHref: "#calculadora",
@@ -114,7 +115,13 @@ export type ReportTab = {
   tabLabel: string;
   /** Ícone semântico da aba. */
   tone: "success" | "warning" | "danger";
-  /** Nível destacado na escala de risco vertical. */
+  /**
+   * Imagem do relatório exibida na aba (servida de /public).
+   * Basta soltar o arquivo com este nome na pasta public/ que ela aparece.
+   */
+  image: string;
+  imageAlt: string;
+  /** Campos abaixo ficam como referência; o conteúdo visível hoje é a imagem. */
   rating: string;
   conclusion: string;
   kpis: {
@@ -158,6 +165,8 @@ export const reportExample = {
       id: "aprovado",
       tabLabel: "Aprovado AAA",
       tone: "success",
+      image: "/relatorio-aprovado.png",
+      imageAlt: "Exemplo de Diagnóstico com resultado Aprovado (rating AAA)",
       rating: "AAA",
       conclusion:
         "Nenhum registro de inadimplência foi identificado, nem indicadores de risco relevantes. O score aparece em faixa alta, o que sugere boa confiabilidade. A renda estimada sustenta a capacidade de pagamento.",
@@ -171,6 +180,8 @@ export const reportExample = {
       id: "atencao",
       tabLabel: "Atenção B",
       tone: "warning",
+      image: "/relatorio-atencao.png",
+      imageAlt: "Exemplo de Diagnóstico com resultado em Atenção (rating B)",
       rating: "B",
       conclusion:
         "Foram identificados sinais moderados de risco: comprometimento de renda acima do ideal e presença de operações de crédito recentes. A pontuação está numa faixa média, o que exige atenção antes de novas contratações.",
@@ -184,6 +195,8 @@ export const reportExample = {
       id: "reprovado",
       tabLabel: "Reprovado C-",
       tone: "danger",
+      image: "/relatorio-reprovado.png",
+      imageAlt: "Exemplo de Diagnóstico com resultado Reprovado (rating C-)",
       rating: "C-",
       conclusion:
         "Foram identificadas ocorrências relevantes na carteira do CPF — dívidas ativas em atraso, comprometimento elevado da renda e registros negativos. A pontuação está na faixa mais baixa e explica a recorrência de negativas.",
@@ -247,7 +260,7 @@ export const testimonials = {
       quote:
         "Estava com o nome limpo fazia mais de 2 anos e mesmo assim nenhum banco aprovava o financiamento do meu carro. O Diagnóstico revelou uma dívida interna de R$ 1.247, num cartão que nem lembrava mais. Quitei essa pendência e, em 18 dias, o financiamento saiu.",
       initials: "MF",
-      avatarColor: "#1f9e4a",
+      avatarColor: "#2e7be8",
       name: "Marcelo Ferreira",
       description: "Eletricista autônomo · Belo Horizonte/MG",
     },
@@ -256,7 +269,7 @@ export const testimonials = {
       quote:
         "Confesso que fiquei em dúvida antes de comprar. Meu crédito já era bom e imaginei que o relatório não teria utilidade. Ao receber, entendi na hora onde dava pra ajustar e, em poucas semanas, meu limite subiu mais R$ 12.000.",
       initials: "RS",
-      avatarColor: "#2563eb",
+      avatarColor: "#1e40af",
       name: "Rafaela Santana",
       description: "Vendedora CLT · Goiânia/GO",
     },
@@ -265,7 +278,7 @@ export const testimonials = {
       quote:
         "Depois de receber o relatório, conversei com o especialista e, seguindo as orientações, resolvi todas as pendências. Hoje meu score deu um salto grande e é o próprio banco que oferece crédito sem eu pedir. Trocou o meu jogo financeiro.",
       initials: "CE",
-      avatarColor: "#b45309",
+      avatarColor: "#0369a1",
       name: "Carlos Eduardo Lima",
       description: "Empresário (MEI) · Curitiba/PR",
     },
@@ -279,14 +292,11 @@ export const testimonials = {
 export const authority = {
   h2: "Quem assina o Diagnóstico",
   lead: "Time especializado em leitura de Rating Bancário e SCR/BACEN, à frente da Nexus Crédito.",
-  photoPlaceholderLabel: "PLACEHOLDER · FOTO DO ESPECIALISTA",
+  /** Foto real do especialista servida de /public. */
+  photo: "/especialista.jpg",
+  photoAlt: "Especialista Roberto, especialista em análise de crédito bancário da Nexus Crédito",
   name: brand.specialist,
-  role: "Especialista em análise de crédito bancário · [X]+ anos interpretando SCR/BACEN",
-  stats: [
-    { value: "[dado 1]", label: "[label]" },
-    { value: "[dado 2]", label: "[label]" },
-    { value: "[dado 3]", label: "[label]" },
-  ],
+  role: "Especialista em análise de crédito bancário",
   quote:
     "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. A Nexus existe pra traduzir esses dados e devolver essa decisão pra mão de quem é dono do CPF.",
 } as const;
@@ -376,7 +386,6 @@ export const footer = {
   },
   contact: {
     title: "Contato",
-    email: "suporte@[dominio-nexus]",
     hours: "Atendimento: seg–sex, 9h–18h",
   },
   institutional: {
@@ -388,6 +397,12 @@ export const footer = {
     { label: "Termos de Uso", href: "#" },
   ],
   copyright: "© 2026 Nexus Crédito. Todos os direitos reservados.",
+  // Crédito de desenvolvimento — "Assessoria Lagos" leva ao site da agência.
+  credit: {
+    prefix: "Site desenvolvido pela ",
+    name: "Assessoria Lagos",
+    href: "https://assessorialagoscontato.com.br",
+  },
 } as const;
 
 /* ------------------------------------------------------------------ */

@@ -17,13 +17,7 @@ export default function Footer() {
 
           <div>
             <h2 className={columnTitle}>{footer.contact.title}</h2>
-            <a
-              href={`mailto:${footer.contact.email}`}
-              className="mt-3 inline-block text-micro text-muted break-words transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success"
-            >
-              {footer.contact.email}
-            </a>
-            <p className="mt-2 text-micro text-muted">{footer.contact.hours}</p>
+            <p className="mt-3 text-micro text-muted">{footer.contact.hours}</p>
           </div>
 
           <div>
@@ -55,7 +49,19 @@ export default function Footer() {
             ))}
           </nav>
 
-          <p className="text-micro text-muted break-words">{footer.copyright}</p>
+          <p className="text-micro text-muted break-words">
+            {footer.copyright}
+            {" · "}
+            {footer.credit.prefix}
+            <a
+              href={footer.credit.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-ink transition-colors hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            >
+              {footer.credit.name}
+            </a>
+          </p>
         </div>
       </div>
     </footer>

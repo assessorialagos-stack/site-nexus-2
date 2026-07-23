@@ -27,10 +27,12 @@ export default function Hero() {
             </span>
           </div>
 
-          <p className="mt-4 text-center text-micro uppercase tracking-[0.18em] text-muted break-words">
-            {hero.videoPlaceholderLabel}
-          </p>
-          <p className="mt-2 text-center text-micro text-muted">{hero.videoCaption}</p>
+          {hero.videoPlaceholderLabel ? (
+            <p className="mt-4 text-center text-micro uppercase tracking-[0.18em] text-muted break-words">
+              {hero.videoPlaceholderLabel}
+            </p>
+          ) : null}
+          <p className="mt-4 text-center text-micro text-muted">{hero.videoCaption}</p>
         </div>
 
         <div className="mx-auto mt-8 w-full max-w-[420px] md:mt-10">

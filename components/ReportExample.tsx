@@ -7,42 +7,17 @@ import SectionHeading from "@/components/SectionHeading";
 
 type Tone = "success" | "warning" | "danger";
 
-/** Classes literais por tom — JIT do Tailwind não resolve strings montadas em runtime. */
-const TONE: Record<Tone, { text: string; softBg: string; softBorder: string; bar: string; barSoft: string }> = {
-  success: {
-    text: "text-success",
-    softBg: "bg-success/10",
-    softBorder: "border-success/40",
-    bar: "bg-success",
-    barSoft: "bg-success/25",
-  },
-  warning: {
-    text: "text-highlight",
-    softBg: "bg-highlight/10",
-    softBorder: "border-highlight/40",
-    bar: "bg-highlight",
-    barSoft: "bg-highlight/25",
-  },
-  danger: {
-    text: "text-danger",
-    softBg: "bg-danger/10",
-    softBorder: "border-danger/50",
-    bar: "bg-danger",
-    barSoft: "bg-danger/30",
-  },
+/** Cor do ícone de cada aba, por tom. (success = azul nesta marca.) */
+const TONE_TEXT: Record<Tone, string> = {
+  success: "text-success",
+  warning: "text-highlight",
+  danger: "text-danger",
 };
 
 function ToneIcon({ tone, className }: { tone: Tone; className?: string }) {
   if (tone === "success") return <CheckIcon className={className} />;
   if (tone === "danger") return <XIcon className={className} />;
   return <AlertIcon className={className} />;
-}
-
-/** Degradê semântico da escala: topo verde → meio amarelo → base vermelho (cores sólidas por faixa). */
-function bandOf(index: number, total: number): Tone {
-  if (index < total / 3) return "success";
-  if (index < (total * 2) / 3) return "warning";
-  return "danger";
 }
 
 const tabDomId = (id: ReportTabId) => `report-tab-${id}`;
@@ -52,11 +27,12 @@ const PANEL_DOM_ID = "report-panel";
 export default function ReportExample() {
   const tabs = reportExample.tabs;
   const [activeId, setActiveId] = useState<ReportTabId>(tabs[0].id);
+  // Guarda as imagens que ainda não existem em /public, pra mostrar o aviso no lugar.
+  const [missing, setMissing] = useState<Record<string, boolean>>({});
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const activeIndex = tabs.findIndex((t) => t.id === activeId);
   const active = tabs[activeIndex] ?? tabs[0];
-  const tone = TONE[active.tone];
 
   function focusTab(index: number) {
     const next = (index + tabs.length) % tabs.length;
@@ -80,8 +56,6 @@ export default function ReportExample() {
     }
   }
 
-  const levels = reportExample.scaleLevels;
-
   return (
     <section id="exemplo-relatorio" className="section">
       <div className="shell">
@@ -104,7 +78,6 @@ export default function ReportExample() {
         >
           {tabs.map((tab, index) => {
             const isActive = tab.id === activeId;
-            const t = TONE[tab.tone];
             return (
               <button
                 key={tab.id}
@@ -119,129 +92,54 @@ export default function ReportExample() {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveId(tab.id)}
                 onKeyDown={(event) => onTabKeyDown(event, index)}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-ctl border px-3 py-3 text-center text-body transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${
+                className={`flex flex-1 items-center justify-center gap-2 rounded-ctl border px-3 py-3 text-center text-body transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta ${
                   isActive
                     ? "border-border bg-bg font-semibold text-ink"
                     : "border-transparent text-muted hover:text-ink"
                 }`}
               >
-                <ToneIcon tone={tab.tone} className={`h-4 w-4 shrink-0 ${t.text}`} />
+                <ToneIcon tone={tab.tone} className={`h-4 w-4 shrink-0 ${TONE_TEXT[tab.tone]}`} />
                 <span className="break-words">{tab.tabLabel}</span>
               </button>
             );
           })}
         </div>
 
+        {/* Painel — mostra a imagem do relatório da aba ativa. */}
         <div
           key={activeId}
           id={PANEL_DOM_ID}
           role="tabpanel"
           aria-labelledby={tabDomId(active.id)}
           tabIndex={0}
-          className="surface animate-fade-slide-up mt-4 p-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success md:p-7"
+          className="surface-gold animate-fade-slide-up mt-4 p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cta md:p-4"
         >
-          {/* a) Cabeçalho tipo documento */}
-          <header className="border-b border-border pb-4 md:pb-5">
-            <div className="flex justify-end">
-              <span className="text-micro text-muted">{reportExample.doc.timestamp}</span>
-            </div>
-            <h3 className="mt-1 text-h3 uppercase tracking-[0.18em] text-ink break-words">
-              {reportExample.doc.title}
-            </h3>
-            <p className="mt-2 text-micro text-muted break-words">{reportExample.doc.author}</p>
-          </header>
-
-          {/* b) Conclusão */}
-          <div className="mt-5 rounded-ctl bg-bg p-4 md:mt-6 md:p-5">
-            <div className="flex items-start gap-3">
-              <ToneIcon tone={active.tone} className={`mt-1 h-5 w-5 shrink-0 ${tone.text}`} />
-              <h3 className="text-ink break-words">{reportExample.conclusionTitle}</h3>
-            </div>
-            <p className="mt-3 text-body text-muted break-words">{active.conclusion}</p>
-          </div>
-
-          {/* c) Escala vertical de risco */}
-          <div className="mt-5 md:mt-6">
-            <h3 className="text-ink break-words">{reportExample.scaleTitle}</h3>
-
-            <ul className="mt-4 flex flex-col gap-1.5">
-              {levels.map((level, index) => {
-                const band = TONE[bandOf(index, levels.length)];
-                const isCurrent = level === active.rating;
-                // Trilha mais cheia no topo da escala e mais curta na base.
-                const fill = 100 - index * 8;
-
-                return (
-                  <li
-                    key={level}
-                    aria-current={isCurrent ? "true" : undefined}
-                    className={`flex items-center gap-3 rounded-ctl border px-2 py-1.5 transition-colors duration-150 ${
-                      isCurrent
-                        ? `${band.softBg} ${band.softBorder}`
-                        : "border-transparent"
-                    }`}
-                  >
-                    <span
-                      className={`w-9 shrink-0 text-micro ${
-                        isCurrent ? `font-bold ${band.text}` : "text-muted"
-                      }`}
-                    >
-                      {level}
-                    </span>
-
-                    <span className="h-2 flex-1 overflow-hidden rounded-full bg-border">
-                      <span
-                        className={`block h-full rounded-full ${isCurrent ? band.bar : band.barSoft}`}
-                        style={{ width: `${fill}%` }}
-                      />
-                    </span>
-
-                    <span className={`w-4 shrink-0 text-micro ${band.text}`} aria-hidden="true">
-                      {isCurrent ? "◀" : ""}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <p className="mt-3 text-micro text-muted break-words">{reportExample.scaleCaption}</p>
-          </div>
-
-          {/* d) KPIs */}
-          <div className="mt-5 grid grid-cols-1 gap-3 md:mt-6 md:grid-cols-3 md:gap-4">
-            <div className="surface-gold rounded-ctl bg-bg p-4">
-              <p className="text-micro text-muted break-words">{reportExample.kpiLabels.commitment}</p>
-              <p className={`num mt-2 text-h3 font-bold break-words ${tone.text}`}>
-                {active.kpis.commitment}
-              </p>
-              <p className="mt-2 text-micro text-muted break-words">
-                {reportExample.kpiDescriptions.commitment}
-              </p>
-            </div>
-
-            <div className="surface-gold rounded-ctl bg-bg p-4">
-              <p className="text-micro text-muted break-words">{reportExample.kpiLabels.capacity}</p>
-              <p className="num mt-2 text-h3 font-bold text-ink break-words">{active.kpis.capacity}</p>
-              {/* kpiDescriptions.capacity é vazio — nada a renderizar */}
-            </div>
-
-            <div className="surface-gold rounded-ctl bg-bg p-4">
+          {missing[active.image] ? (
+            // Aviso de imagem pendente — some sozinho assim que o arquivo entrar em /public.
+            <div className="flex min-h-[360px] flex-col items-center justify-center gap-3 rounded-ctl border border-dashed border-border bg-bg p-8 text-center">
+              <ToneIcon
+                tone={active.tone}
+                className={`h-10 w-10 shrink-0 ${TONE_TEXT[active.tone]}`}
+              />
+              <p className="text-body font-semibold text-ink">Exemplo · {active.tabLabel}</p>
               <p className="text-micro text-muted break-words">
-                {reportExample.kpiLabels.suggestedLimit}
-              </p>
-              <p className="mt-2">
-                <span className="money num inline-block text-h3 break-words">
-                  {active.kpis.suggestedLimit}
-                </span>
-              </p>
-              <p className="mt-2 text-micro text-muted break-words">
-                {reportExample.kpiDescriptions.suggestedLimit}
+                Adicione a imagem em{" "}
+                <span className="font-sans text-ink">public{active.image}</span>
               </p>
             </div>
-          </div>
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={active.image}
+              alt={active.imageAlt}
+              onError={() => setMissing((m) => ({ ...m, [active.image]: true }))}
+              className="w-full rounded-ctl"
+              loading="lazy"
+            />
+          )}
 
-          {/* e) Rodapé do painel */}
-          <p className="mt-5 border-t border-border pt-4 text-center text-micro text-muted break-words md:mt-6">
+          {/* Rodapé do painel */}
+          <p className="mt-4 border-t border-border pt-4 text-center text-micro text-muted break-words">
             {reportExample.panelFooter}
           </p>
         </div>

@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Nunito, Playfair_Display } from "next/font/google";
 import { meta } from "@/lib/copy";
 import "./globals.css";
 
-const inter = Inter({
+// Corpo/subtítulos: fonte arredondada, padronizada em todo o site (exceto títulos).
+const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-nunito",
 });
 
 // Serifa editorial dos títulos — a assinatura visual da marca.
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0a0d0b",
+  themeColor: "#080f1e",
 };
 
 export default function RootLayout({
@@ -42,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="pt-BR" className={`${nunito.variable} ${playfair.variable}`}>
       <head>
         <meta name="robots" content="noindex, nofollow" />
       </head>
