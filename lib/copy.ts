@@ -401,7 +401,7 @@ export const footer = {
   credit: {
     prefix: "Site desenvolvido pela ",
     name: "Assessoria Lagos",
-    href: "https://assessorialagoscontato.com.br",
+    href: "https://assessorialagos.com.br",
   },
 } as const;
 
