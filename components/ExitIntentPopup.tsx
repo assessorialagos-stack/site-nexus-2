@@ -98,17 +98,11 @@ export default function ExitIntentPopup() {
         aria-hidden="true"
       />
 
-      {/* Card — mais largo pra respirar nas laterais e ficar menos comprido */}
+      {/* Card — mais largo pra respirar nas laterais; halo dourado EXTERNO em volta */}
       <div
-        className="animate-pop-in relative z-10 w-full max-w-[540px] overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-[0_24px_70px_-20px_rgba(0,0,0,.8)]"
+        className="animate-pop-in relative z-10 w-full max-w-[540px] overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-[0_24px_70px_-20px_rgba(0,0,0,.85),0_0_90px_-6px_rgba(201,162,39,0.6)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Brilho dourado de fundo */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_40%,rgba(201,162,39,0.22),transparent_62%)]"
-        />
-
         {/* Faixa de urgência no topo */}
         <div className="relative z-10 bg-danger px-10 py-2.5 text-center">
           <p className="flex items-center justify-center gap-2 text-micro font-extrabold uppercase tracking-wider text-white">
@@ -151,7 +145,7 @@ export default function ExitIntentPopup() {
           <p className="text-micro font-semibold uppercase tracking-wide text-muted">
             {exitOffer.priceLead}
           </p>
-          <p className="mt-1 text-[56px] font-extrabold leading-none tracking-tight text-gold [text-shadow:0_2px_26px_rgba(201,162,39,0.45)] md:text-[70px]">
+          <p className="mt-1 text-[56px] font-black leading-none tracking-tight text-gold [text-shadow:0_2px_26px_rgba(201,162,39,0.45)] md:text-[70px]">
             {exitOffer.priceNew}
           </p>
           <p className="mt-3 inline-flex items-center gap-1.5 text-body font-semibold text-ink">
