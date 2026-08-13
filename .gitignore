@@ -16,3 +16,6 @@ next-env.d.ts
 # Vídeo-fonte da VSL (699MB) — a versão publicada é public/vsl.mp4 (comprimida).
 /Nexus 05.08.mp4
 
+
+.vercel
+.env*

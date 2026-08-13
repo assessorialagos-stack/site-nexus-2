@@ -95,7 +95,7 @@ export const calculator = {
     alert: "Você pode estar deixando de acessar até {gap} em crédito.",
     cta: "Quero descobrir o que está travando meu CPF",
     ctaSub: "Clique no link, preencha as informações e em até 48h um especialista irá marcar sua reunião",
-    ctaHref: "#oferta",
+    ctaHref: "https://payfast.greenn.com.br/redirect/307493",
   },
   accordion: {
     title: "Como esse número é calculado",
@@ -226,7 +226,7 @@ export const offer = {
   installments: "ou em 12x no cartão de crédito",
   micro: "No cartão, sai por menos de um cafezinho por dia — clareza total sobre o seu CPF.",
   cta: "Quero meu Diagnóstico agora →",
-  ctaHref: "#",
+  ctaHref: "https://payfast.greenn.com.br/redirect/307493",
   seals: [
     "Compra segura",
     "Dados protegidos",
@@ -310,7 +310,7 @@ export const closing = {
   paragraph:
     "Agora só falta descobrir, com dados oficiais, o que está impresso no seu CPF hoje. Em até 48h um especialista marca a sua reunião.",
   cta: "Fazer meu Diagnóstico por R$ 97 →",
-  ctaHref: "#",
+  ctaHref: "https://payfast.greenn.com.br/redirect/307493",
   meta: "Pagamento seguro. Em até 48h um especialista marca a sua reunião. Time especializado em análise de Rating Bancário.",
   seals: [
     "8 páginas detalhadas",
@@ -428,7 +428,7 @@ export const exitOffer = {
   priceOld: "R$ 97",
   priceNew: "R$ 79",
   cta: "Quero por R$ 79 →",
-  ctaHref: "#oferta",
+  ctaHref: "https://payfast.greenn.com.br/redirect/307507",
   dismiss: "Agora não, obrigado",
   note: "Oferta válida só nesta visita.",
 } as const;
