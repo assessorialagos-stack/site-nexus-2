@@ -419,15 +419,15 @@ export const meta = {
 /* Pop-up de saída (exit-intent)                                       */
 /* ------------------------------------------------------------------ */
 /* Aparece uma vez por sessão quando a pessoa demonstra intenção de     */
-/* sair, oferecendo o desconto de R$ 97 para R$ 79.                     */
+/* sair, oferecendo o desconto de R$ 97 para R$ 77.                     */
 
 export const exitOffer = {
   eyebrow: "Espera!",
   title: "Antes de fechar, um desconto só seu",
   body: "Garante o seu Diagnóstico agora por menos:",
   priceOld: "R$ 97",
-  priceNew: "R$ 79",
-  cta: "Quero por R$ 79 →",
+  priceNew: "R$ 77",
+  cta: "Quero por R$ 77 →",
   ctaHref: "https://payfast.greenn.com.br/redirect/307507",
   dismiss: "Agora não, obrigado",
   note: "Oferta válida só nesta visita.",
