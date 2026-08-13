@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.vercel
+.env*
+*.log
+*.tsbuildinfo
+raw
+# Vídeo-fonte da VSL (699MB) — o que vai pro ar é public/vsl.mp4 (comprimido).
+Nexus 05.08.mp4

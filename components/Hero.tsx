@@ -1,4 +1,4 @@
-import { CheckIcon, PlayIcon } from "@/components/Icons";
+import { CheckIcon } from "@/components/Icons";
 import { hero } from "@/lib/copy";
 
 export default function Hero() {
@@ -19,19 +19,20 @@ export default function Hero() {
           ))}
         </ul>
 
-        <div className="mx-auto mt-8 w-full max-w-[720px] md:mt-10">
-          {/* Placeholder estático do VSL: sem <video>/<img> até o vídeo final existir. */}
-          <div className="flex aspect-video w-full items-center justify-center rounded-card border border-border bg-surface">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-cta md:h-20 md:w-20">
-              <PlayIcon className="ml-1 h-6 w-6 shrink-0 text-white md:h-7 md:w-7" />
-            </span>
+        {/* VSL: o vídeo é vertical (9:16). No mobile ocupa o quadro retrato inteiro;
+            no desktop fica num quadro 16:9 com tarjas pretas nas laterais (só pra
+            preencher o espaço). object-contain garante que o vídeo nunca é cortado. */}
+        <div className="mx-auto mt-8 w-full max-w-[340px] md:mt-10 md:max-w-[800px]">
+          <div className="aspect-[9/16] overflow-hidden rounded-card border border-border bg-black md:aspect-video">
+            <video
+              className="h-full w-full object-contain"
+              src="/vsl.mp4"
+              poster="/vsl-poster.jpg"
+              controls
+              playsInline
+              preload="metadata"
+            />
           </div>
-
-          {hero.videoPlaceholderLabel ? (
-            <p className="mt-4 text-center text-micro uppercase tracking-[0.18em] text-muted break-words">
-              {hero.videoPlaceholderLabel}
-            </p>
-          ) : null}
           <p className="mt-4 text-center text-micro text-muted">{hero.videoCaption}</p>
         </div>
 

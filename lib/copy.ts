@@ -1,5 +1,5 @@
 /**
- * Copy definitiva da landing Nexus Crédito — v1 (aprovação visual).
+ * Copy definitiva da landing — v1 (aprovação visual).
  *
  * Todo o texto exibido no site mora neste arquivo. Os componentes não devem
  * conter strings de conteúdo hardcoded: para ajustar a copy, edite só aqui.
@@ -10,8 +10,8 @@
  */
 
 export const brand = {
-  name: "Nexus Crédito",
-  product: "Diagnóstico Nexus do Rating Bancário",
+  name: "Especialista Roberto",
+  product: "Diagnóstico do Rating Bancário",
   specialist: "Especialista Roberto",
 } as const;
 
@@ -94,7 +94,7 @@ export const calculator = {
     immediateLabel: "Média que as instituições deveriam liberar imediato: entre",
     alert: "Você pode estar deixando de acessar até {gap} em crédito.",
     cta: "Quero descobrir o que está travando meu CPF",
-    ctaSub: "Relatório completo em até 48h no seu WhatsApp · R$ 97",
+    ctaSub: "Clique no link, preencha as informações e em até 48h um especialista irá marcar sua reunião",
     ctaHref: "#oferta",
   },
   accordion: {
@@ -215,7 +215,7 @@ export const reportExample = {
 
 export const offer = {
   h2: "Pega agora o seu Diagnóstico e descobre, de fato, o que trava o seu crédito",
-  lead: "Pagamento único. Relatório completo em até 48h no seu WhatsApp.",
+  lead: "Pagamento único. Você preenche seus dados e, em até 48h, um especialista marca a sua reunião.",
   badge: "Oferta limitada",
   productName: brand.product,
   productSubtitle: "Tudo o que o banco enxerga do seu CPF, condensado em 8 páginas.",
@@ -223,7 +223,7 @@ export const offer = {
   priceLabel: "por apenas:",
   price: "R$ 97",
   priceComplement: "à vista no PIX",
-  installments: "ou R$ 8,08 em 12x sem juros no cartão",
+  installments: "ou em 12x no cartão de crédito",
   micro: "No cartão, sai por menos de um cafezinho por dia — clareza total sobre o seu CPF.",
   cta: "Quero meu Diagnóstico agora →",
   ctaHref: "#",
@@ -231,7 +231,7 @@ export const offer = {
     "Compra segura",
     "Dados protegidos",
     "Suporte humano",
-    "Entrega em até 48h no WhatsApp",
+    "Reunião marcada em até 48h",
   ],
 } as const;
 
@@ -291,14 +291,14 @@ export const testimonials = {
 
 export const authority = {
   h2: "Quem assina o Diagnóstico",
-  lead: "Time especializado em leitura de Rating Bancário e SCR/BACEN, à frente da Nexus Crédito.",
+  lead: "Time especializado em leitura de Rating Bancário e SCR/BACEN.",
   /** Foto real do especialista servida de /public. */
   photo: "/especialista.jpg",
-  photoAlt: "Especialista Roberto, especialista em análise de crédito bancário da Nexus Crédito",
+  photoAlt: "Especialista Roberto, especialista em análise de crédito bancário",
   name: brand.specialist,
   role: "Especialista em análise de crédito bancário",
   quote:
-    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. A Nexus existe pra traduzir esses dados e devolver essa decisão pra mão de quem é dono do CPF.",
+    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. Esse trabalho existe pra traduzir esses dados e devolver essa decisão pra mão de quem é dono do CPF.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -308,14 +308,14 @@ export const authority = {
 export const closing = {
   h2: "Você já assistiu ao vídeo, simulou o limite, viu o modelo do relatório e leu a conclusão.",
   paragraph:
-    "Agora só falta descobrir, com dados oficiais, o que está impresso no seu CPF hoje. Chega no seu WhatsApp em até 48h.",
+    "Agora só falta descobrir, com dados oficiais, o que está impresso no seu CPF hoje. Em até 48h um especialista marca a sua reunião.",
   cta: "Fazer meu Diagnóstico por R$ 97 →",
   ctaHref: "#",
-  meta: "Pagamento seguro. Relatório completo no seu WhatsApp em até 48 horas. Time Nexus especializado em análise de Rating Bancário.",
+  meta: "Pagamento seguro. Em até 48h um especialista marca a sua reunião. Time especializado em análise de Rating Bancário.",
   seals: [
     "8 páginas detalhadas",
     "Dados oficiais SCR/BACEN",
-    "Entrega em até 48h no WhatsApp",
+    "Reunião marcada em até 48h",
     "Compra segura",
   ],
 } as const;
@@ -356,9 +356,9 @@ export const faq = {
         "Não. É um relatório informativo de diagnóstico que mostra o que o banco enxerga e os pontos invisíveis que podem estar travando aprovações. O resultado depende do que você faz a partir das informações reveladas.",
     },
     {
-      question: "Em quanto tempo eu recebo?",
+      question: "Em quanto tempo um especialista fala comigo?",
       answer:
-        "Em até 48h após a confirmação do pagamento, direto no número de WhatsApp cadastrado no checkout, em PDF.",
+        "Após a confirmação do pagamento, você preenche seus dados e, em até 48h, um especialista entra em contato para marcar a sua reunião.",
     },
     {
       question: "O que aparece dentro do relatório?",
@@ -382,7 +382,7 @@ export const faq = {
 export const footer = {
   about: {
     title: "Sobre",
-    body: "O Diagnóstico Nexus do Rating Bancário é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
+    body: "O Diagnóstico do Rating Bancário é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
   },
   contact: {
     title: "Contato",
@@ -396,7 +396,7 @@ export const footer = {
     { label: "Política de Privacidade", href: "#" },
     { label: "Termos de Uso", href: "#" },
   ],
-  copyright: "© 2026 Nexus Crédito. Todos os direitos reservados.",
+  copyright: "© 2026 Especialista Roberto. Todos os direitos reservados.",
   // Crédito de desenvolvimento — "Assessoria Lagos" leva ao site da agência.
   credit: {
     prefix: "Site desenvolvido pela ",
@@ -410,7 +410,25 @@ export const footer = {
 /* ------------------------------------------------------------------ */
 
 export const meta = {
-  title: "Nexus Crédito · Diagnóstico do Rating Bancário",
+  title: "Diagnóstico do Rating Bancário",
   description:
-    "Relatório informativo de até 8 páginas com dados oficiais do SCR/BACEN. Descubra o que trava o crédito do seu CPF. Entrega em até 48h no WhatsApp.",
+    "Relatório informativo de até 8 páginas com dados oficiais do SCR/BACEN. Descubra o que trava o crédito do seu CPF. Em até 48h um especialista marca a sua reunião.",
+} as const;
+
+/* ------------------------------------------------------------------ */
+/* Pop-up de saída (exit-intent)                                       */
+/* ------------------------------------------------------------------ */
+/* Aparece uma vez por sessão quando a pessoa demonstra intenção de     */
+/* sair, oferecendo o desconto de R$ 97 para R$ 79.                     */
+
+export const exitOffer = {
+  eyebrow: "Espera!",
+  title: "Antes de fechar, um desconto só seu",
+  body: "Garante o seu Diagnóstico agora por menos:",
+  priceOld: "R$ 97",
+  priceNew: "R$ 79",
+  cta: "Quero por R$ 79 →",
+  ctaHref: "#oferta",
+  dismiss: "Agora não, obrigado",
+  note: "Oferta válida só nesta visita.",
 } as const;

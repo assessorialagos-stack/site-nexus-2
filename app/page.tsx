@@ -8,6 +8,7 @@ import Authority from "@/components/Authority";
 import Closing from "@/components/Closing";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 export default function Page() {
   return (
@@ -24,6 +25,7 @@ export default function Page() {
         <Faq />
       </main>
       <Footer />
+      <ExitIntentPopup />
     </>
   );
 }
