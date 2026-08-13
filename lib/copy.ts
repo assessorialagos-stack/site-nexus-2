@@ -94,7 +94,7 @@ export const calculator = {
     immediateLabel: "Média que as instituições deveriam liberar imediato: entre",
     alert: "Você pode estar deixando de acessar até {gap} em crédito.",
     cta: "Quero descobrir o que está travando meu CPF",
-    ctaSub: "Clique no link, preencha as informações e em até 48h um especialista irá marcar sua reunião",
+    ctaSub: "Clique no link, preencha as informações e em até 48h úteis um especialista entra em contato para marcar a sua reunião",
     ctaHref: "https://payfast.greenn.com.br/redirect/307493",
   },
   accordion: {
@@ -215,7 +215,7 @@ export const reportExample = {
 
 export const offer = {
   h2: "Pega agora o seu Diagnóstico e descobre, de fato, o que trava o seu crédito",
-  lead: "Pagamento único. Você preenche seus dados e, em até 48h, um especialista marca a sua reunião.",
+  lead: "Pagamento único. Você preenche seus dados e, em até 48h úteis, um especialista entra em contato para marcar a sua reunião.",
   badge: "Oferta limitada",
   productName: brand.product,
   productSubtitle: "Tudo o que o banco enxerga do seu CPF, condensado em 8 páginas.",
@@ -231,7 +231,7 @@ export const offer = {
     "Compra segura",
     "Dados protegidos",
     "Suporte humano",
-    "Reunião marcada em até 48h",
+    "Contato em até 48h úteis",
   ],
 } as const;
 
@@ -308,14 +308,14 @@ export const authority = {
 export const closing = {
   h2: "Você já assistiu ao vídeo, simulou o limite, viu o modelo do relatório e leu a conclusão.",
   paragraph:
-    "Agora só falta descobrir, com dados oficiais, o que está impresso no seu CPF hoje. Em até 48h um especialista marca a sua reunião.",
+    "Agora só falta descobrir, com dados oficiais, o que está impresso no seu CPF hoje. Depois do pagamento, um especialista entra em contato em até 48h úteis para marcar a sua reunião.",
   cta: "Fazer meu Diagnóstico por R$ 97 →",
   ctaHref: "https://payfast.greenn.com.br/redirect/307493",
-  meta: "Pagamento seguro. Em até 48h um especialista marca a sua reunião. Time especializado em análise de Rating Bancário.",
+  meta: "Pagamento seguro. Um especialista entra em contato em até 48h úteis para marcar a sua reunião. Time especializado em análise de Rating Bancário.",
   seals: [
     "8 páginas detalhadas",
     "Dados oficiais SCR/BACEN",
-    "Reunião marcada em até 48h",
+    "Contato em até 48h úteis",
     "Compra segura",
   ],
 } as const;
@@ -358,7 +358,7 @@ export const faq = {
     {
       question: "Em quanto tempo um especialista fala comigo?",
       answer:
-        "Após a confirmação do pagamento, você preenche seus dados e, em até 48h, um especialista entra em contato para marcar a sua reunião.",
+        "Após a confirmação do pagamento, você preenche seus dados e, em até 48h úteis, um especialista entra em contato para marcar a sua reunião.",
     },
     {
       question: "O que aparece dentro do relatório?",
@@ -412,7 +412,7 @@ export const footer = {
 export const meta = {
   title: "Diagnóstico do Rating Bancário",
   description:
-    "Relatório informativo de até 8 páginas com dados oficiais do SCR/BACEN. Descubra o que trava o crédito do seu CPF. Em até 48h um especialista marca a sua reunião.",
+    "Relatório informativo de até 8 páginas com dados oficiais do SCR/BACEN. Descubra o que trava o crédito do seu CPF. Em até 48h úteis um especialista entra em contato para marcar a sua reunião.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -428,7 +428,7 @@ export const exitOffer = {
   // Corpo adaptado à NOSSA entrega (reunião com especialista, não WhatsApp).
   body: {
     pre: "Fecha agora e, em ",
-    hi: "até 48h",
+    hi: "até 48h úteis",
     post: ", um especialista entra em contato pra marcar a sua reunião.",
   },
   priceLead: "De R$ 97 por apenas",
