@@ -99,9 +99,19 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "pop-in": {
+          "0%": { opacity: "0", transform: "scale(.94) translateY(10px)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "fade-slide-up": "fade-slide-up .38s cubic-bezier(.16,.84,.44,1) both",
+        "pop-in": "pop-in .34s cubic-bezier(.16,.84,.44,1) both",
+        "fade-in": "fade-in .25s ease-out both",
       },
     },
   },

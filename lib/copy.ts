@@ -427,8 +427,9 @@ export const exitOffer = {
   body: "Garante o seu Diagnóstico agora por menos:",
   priceOld: "R$ 97",
   priceNew: "R$ 77",
+  save: "R$ 20",
   cta: "Quero por R$ 77 →",
   ctaHref: "https://payfast.greenn.com.br/redirect/307507",
   dismiss: "Agora não, obrigado",
-  note: "Oferta válida só nesta visita.",
+  note: "Oferta só nesta visita.",
 } as const;
