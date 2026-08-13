@@ -195,3 +195,15 @@
     @apply font-sans tabular-nums;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Serifa dos títulos — fora de @layer de propósito.                  */
+/* No CSS em camadas do Tailwind, regra SEM camada vence a camada base, */
+/* então isto garante a Playfair nos títulos por cima da fonte do body. */
+/* Mira só as tags h1/h2/h3 pra não pegar números (.num em <span>/<p>). */
+/* ------------------------------------------------------------------ */
+h1,
+h2,
+h3 {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
