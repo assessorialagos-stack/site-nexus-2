@@ -422,14 +422,20 @@ export const meta = {
 /* sair, oferecendo o desconto de R$ 97 para R$ 77.                     */
 
 export const exitOffer = {
-  eyebrow: "Espera!",
-  title: "Antes de fechar, um desconto só seu",
-  body: "Garante o seu Diagnóstico agora por menos:",
-  priceOld: "R$ 97",
+  eyebrow: "Última chance",
+  // Título de FOMO — a palavra "hi" recebe destaque em dourado no componente.
+  title: { pre: "Você tá saindo ", hi: "sem", post: " seu Check-up" },
+  // Corpo adaptado à NOSSA entrega (reunião com especialista, não WhatsApp).
+  body: {
+    pre: "Fecha agora e, em ",
+    hi: "até 48h",
+    post: ", um especialista entra em contato pra marcar a sua reunião.",
+  },
+  priceLead: "De R$ 97 por apenas",
   priceNew: "R$ 77",
-  save: "R$ 20",
-  cta: "Quero por R$ 77 →",
+  paymentNote: "Pagamento único, sem mensalidade",
+  cta: "Fazer meu Check-up agora →",
   ctaHref: "https://payfast.greenn.com.br/redirect/307507",
-  dismiss: "Agora não, obrigado",
-  note: "Oferta só nesta visita.",
+  dismiss: "Não, prefiro sair sem o meu Check-up",
+  note: "Oferta válida só nesta sessão. Pagamento 100% seguro.",
 } as const;

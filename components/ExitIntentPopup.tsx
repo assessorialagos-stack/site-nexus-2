@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { exitOffer } from "@/lib/copy";
-import { XIcon, BoltIcon, ShieldIcon } from "@/components/Icons";
+import { XIcon, AlertIcon, CheckIcon } from "@/components/Icons";
 
 const SESSION_KEY = "exitOfferShown";
 
@@ -100,81 +100,75 @@ export default function ExitIntentPopup() {
 
       {/* Card */}
       <div
-        className="animate-pop-in relative z-10 w-full max-w-[420px] overflow-hidden rounded-[18px] border border-gold/40 bg-surface shadow-[0_24px_70px_-20px_rgba(0,0,0,.8)]"
+        className="animate-pop-in relative z-10 w-full max-w-[400px] overflow-hidden rounded-2xl border border-gold/40 bg-surface shadow-[0_24px_70px_-20px_rgba(0,0,0,.8)]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Fio + brilho dourado no topo */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-gold to-transparent"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-gold/15 to-transparent"
-        />
-
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={() => setOpen(false)}
-          aria-label="Fechar"
-          className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full text-muted transition-colors hover:bg-ink/8 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-        >
-          <XIcon className="h-5 w-5" />
-        </button>
-
-        <div className="relative px-6 pb-7 pt-9 text-center md:px-8">
-          {/* Selo */}
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1 text-micro font-extrabold uppercase tracking-wider text-gold-soft">
-            <BoltIcon className="h-3.5 w-3.5 shrink-0" />
+        {/* Faixa de urgência no topo */}
+        <div className="relative bg-danger px-10 py-2.5 text-center">
+          <p className="flex items-center justify-center gap-2 text-micro font-extrabold uppercase tracking-wider text-white">
+            <AlertIcon className="h-3.5 w-3.5 shrink-0" />
             {exitOffer.eyebrow}
-          </span>
+            <AlertIcon className="h-3.5 w-3.5 shrink-0" />
+          </p>
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Fechar"
+            className="absolute right-2 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/20 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+        </div>
 
+        {/* Corpo */}
+        <div className="px-6 pb-6 pt-5 text-center md:px-7">
           <h2
             id="exit-title"
-            className="mt-4 text-balance font-display text-[26px] font-bold leading-tight text-ink md:text-[28px]"
+            className="text-balance font-display text-[24px] font-bold leading-tight text-ink md:text-[26px]"
           >
-            {exitOffer.title}
+            {exitOffer.title.pre}
+            <span className="text-gold">{exitOffer.title.hi}</span>
+            {exitOffer.title.post}
           </h2>
-          <p className="mx-auto mt-2 max-w-[300px] text-body text-muted">{exitOffer.body}</p>
+
+          <p className="mx-auto mt-2.5 max-w-[320px] text-body text-muted">
+            {exitOffer.body.pre}
+            <strong className="font-bold text-ink">{exitOffer.body.hi}</strong>
+            {exitOffer.body.post}
+          </p>
+
+          {/* Divisor tracejado (eco da referência) */}
+          <div className="my-5 border-t border-dashed border-border" />
 
           {/* Preço */}
-          <div className="mt-6">
-            <p className="text-micro font-semibold uppercase tracking-wide text-muted">
-              De <span className="line-through">{exitOffer.priceOld}</span> por apenas
-            </p>
-            <p className="mt-1 text-[52px] font-extrabold leading-none tracking-tight text-gold md:text-[60px]">
-              {exitOffer.priceNew}
-            </p>
-            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/10 px-3 py-1 text-micro font-bold text-gold-soft">
-              Você economiza {exitOffer.save}
-            </span>
-          </div>
+          <p className="text-micro font-semibold uppercase tracking-wide text-muted">
+            {exitOffer.priceLead}
+          </p>
+          <p className="mt-1 text-[48px] font-extrabold leading-none tracking-tight text-gold md:text-[54px]">
+            {exitOffer.priceNew}
+          </p>
+          <p className="mt-2.5 inline-flex items-center gap-1.5 text-micro font-semibold text-ink">
+            <CheckIcon className="h-4 w-4 shrink-0 text-success" />
+            {exitOffer.paymentNote}
+          </p>
 
           {/* CTA */}
-          <div className="mt-6">
+          <div className="mt-5">
             <a href={exitOffer.ctaHref} className="btn-cta" onClick={() => setOpen(false)}>
               {exitOffer.cta}
             </a>
           </div>
 
-          {/* Confiança */}
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-micro text-muted">
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldIcon className="h-4 w-4 shrink-0 text-success" />
-              Pagamento seguro
-            </span>
-            <span aria-hidden="true">·</span>
-            <span>{exitOffer.note}</span>
-          </div>
-
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="mt-4 text-micro text-muted underline-offset-2 transition-colors hover:text-ink hover:underline"
+            className="mt-3 text-micro text-muted underline-offset-2 transition-colors hover:text-ink hover:underline"
           >
             {exitOffer.dismiss}
           </button>
+
+          <p className="mt-3 text-micro text-muted">{exitOffer.note}</p>
         </div>
       </div>
     </div>
