@@ -1,32 +1,43 @@
-import SectionHeading from "@/components/SectionHeading";
 import { QuoteMarkIcon } from "@/components/Icons";
 import { authority } from "@/lib/copy";
 
 export default function Authority() {
   return (
-    <section id="autoridade" className="section">
+    <section id="especialista" className="section bg-bg-soft">
       <div className="shell">
-        <SectionHeading title={authority.h2} lead={authority.lead} />
-
-        <div className="mt-10 grid grid-cols-1 items-start gap-8 md:mt-14 md:grid-cols-[minmax(0,340px)_1fr]">
-          {/* Foto real do especialista — no mobile fica no topo e com largura limitada */}
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,320px)_1fr] md:gap-12">
+          {/* Foto */}
           <div className="mx-auto w-full max-w-[300px] md:mx-0 md:max-w-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={authority.photo}
               alt={authority.photoAlt}
-              className="aspect-[4/5] w-full rounded-card border border-border object-cover object-top"
+              className="aspect-[4/5] w-full rounded-card border border-border object-cover object-top shadow-card"
               loading="lazy"
             />
           </div>
 
+          {/* Texto */}
           <div>
-            <h3 className="text-h2 font-bold text-ink break-words">{authority.name}</h3>
-            <p className="mt-2 text-body text-muted break-words">{authority.role}</p>
+            <span className="eyebrow">{authority.eyebrow}</span>
+            <h2 className="text-h2 mt-4 text-ink text-balance">{authority.h2}</h2>
 
-            <blockquote className="surface-gold mt-6 border-l-4 border-gold p-5 md:p-6">
-              <QuoteMarkIcon className="h-8 w-8 shrink-0 text-gold md:h-10 md:w-10" />
-              <p className="mt-3 text-body italic text-ink break-words">{authority.quote}</p>
+            <div className="mt-3">
+              <p className="text-h3 text-brand">{authority.name}</p>
+              <p className="mt-1 text-body text-muted">{authority.role}</p>
+            </div>
+
+            <div className="mt-5 space-y-4">
+              {authority.bio.map((p, i) => (
+                <p key={i} className="text-body text-body break-words">
+                  {p}
+                </p>
+              ))}
+            </div>
+
+            <blockquote className="mt-6 rounded-card border-l-4 border-brand bg-white p-5 shadow-card md:p-6">
+              <QuoteMarkIcon className="h-7 w-7 shrink-0 text-brand md:h-8 md:w-8" />
+              <p className="mt-3 text-body font-medium italic text-ink break-words">{authority.quote}</p>
             </blockquote>
           </div>
         </div>

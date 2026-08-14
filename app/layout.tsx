@@ -1,29 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito, Playfair_Display } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { meta } from "@/lib/copy";
 import "./globals.css";
 
-// Corpo/subtítulos: fonte arredondada, padronizada em todo o site (exceto títulos).
-const nunito = Nunito({
+// Corpo — sans institucional.
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-nunito",
+  variable: "--font-inter",
 });
 
-// Serifa editorial dos títulos — a assinatura visual da marca.
-const playfair = Playfair_Display({
+// Títulos — sans geométrica, moderna e confiável.
+const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
-  weight: ["700", "800", "900"],
-  style: ["normal", "italic"],
-  variable: "--font-playfair",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  // v1 é uma versão de aprovação visual — não deve ser indexada.
   robots: {
     index: false,
     follow: false,
@@ -35,7 +32,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#080f1e",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -44,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${nunito.variable} ${playfair.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         <meta name="robots" content="noindex, nofollow" />
       </head>

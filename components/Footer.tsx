@@ -5,14 +5,12 @@ const columnTitle = "text-micro font-bold uppercase tracking-wider text-ink";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer className="border-t border-border bg-bg-soft">
       <div className="shell py-12 md:py-14">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <h2 className={columnTitle}>{footer.about.title}</h2>
-            <p className="mt-3 text-micro leading-relaxed text-muted break-words">
-              {footer.about.body}
-            </p>
+            <p className="mt-3 text-micro leading-relaxed text-muted break-words">{footer.about.body}</p>
           </div>
 
           <div>
@@ -41,7 +39,7 @@ export default function Footer() {
                 ) : null}
                 <a
                   href={link.href}
-                  className="text-micro text-muted transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success"
+                  className="text-micro text-muted transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   {link.label}
                 </a>
@@ -57,7 +55,7 @@ export default function Footer() {
               href={footer.credit.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-ink transition-colors hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="font-semibold text-brand transition-colors hover:text-brand-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               {footer.credit.name}
             </a>

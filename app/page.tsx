@@ -1,12 +1,12 @@
 import Hero from "@/components/Hero";
-import WhatItIs from "@/components/WhatItIs";
-import Calculator from "@/components/Calculator";
+import Differentiation from "@/components/Differentiation";
+import Process from "@/components/Process";
+import Deliverable from "@/components/Deliverable";
 import ReportExample from "@/components/ReportExample";
-import Offer from "@/components/Offer";
-import Testimonials from "@/components/Testimonials";
 import Authority from "@/components/Authority";
-import Closing from "@/components/Closing";
+import Offer from "@/components/Offer";
 import Faq from "@/components/Faq";
+import Closing from "@/components/Closing";
 import Footer from "@/components/Footer";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 
@@ -15,14 +15,14 @@ export default function Page() {
     <>
       <main>
         <Hero />
-        <WhatItIs />
-        <Calculator />
+        <Differentiation />
+        <Process />
+        <Deliverable />
         <ReportExample />
-        <Offer />
-        <Testimonials />
         <Authority />
-        <Closing />
+        <Offer />
         <Faq />
+        <Closing />
       </main>
       <Footer />
       <ExitIntentPopup />

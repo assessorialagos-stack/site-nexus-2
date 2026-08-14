@@ -3,46 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  /* ------------------------------------------------------------------ */
-  /* Temas de seção                                                      */
-  /*                                                                      */
-  /* A landing alterna dois fundos escuros seção a seção, como o          */
-  /* carrossel do cliente. As cores de superfície do tailwind.config      */
-  /* (bg / surface / border / muted) leem estas variáveis, então trocar    */
-  /* o tema de um bloco não exige tocar em nenhum componente.             */
-  /*                                                                      */
-  /* Valores em "R G B" (sem vírgulas) para o Tailwind conseguir aplicar  */
-  /* o modificador de opacidade — bg-surface/50 continua funcionando.     */
-  /* ------------------------------------------------------------------ */
-  /* Tema A — navy profundo (seções ímpares). */
-  .theme-deep,
-  main > section:nth-child(odd) {
-    --c-bg: 8 15 30;
-    --c-surface: 16 27 48;
-    --c-surface-2: 24 38 64;
-    --c-border: 34 50 78;
-    --c-muted: 154 168 190;
-  }
-
-  /* Tema B — azul-meia-noite, um tom acima (seções pares + rodapé). */
-  .theme-blue,
-  main > section:nth-child(even),
-  body > footer {
-    --c-bg: 11 21 42;
-    --c-surface: 19 33 60;
-    --c-surface-2: 28 44 74;
-    --c-border: 40 58 92;
-    --c-muted: 160 174 196;
-  }
-
   :root {
-    color-scheme: dark;
-    /* fallback do body, antes de qualquer seção */
-    --c-bg: 8 15 30;
-    --c-surface: 16 27 48;
-    --c-surface-2: 24 38 64;
-    --c-border: 34 50 78;
-    --c-muted: 154 168 190;
+    color-scheme: light;
   }
 
   html {
@@ -52,58 +14,20 @@
   }
 
   body {
-    @apply bg-bg text-ink font-sans antialiased;
-    /* trava scroll horizontal em qualquer viewport */
+    @apply bg-bg font-sans text-body antialiased;
     overflow-x: hidden;
   }
 
-  /* Cada seção pinta o próprio fundo a partir do tema que herdou. */
-  main > section,
-  body > footer {
-    position: relative;
-    background-color: rgb(var(--c-bg));
-  }
-
-  /* Serifa editorial nos títulos — a assinatura visual da marca.
-     Cobre as tags e os utilitários, porque alguns blocos aplicam text-h3
-     em elementos que não são heading (valores de KPI, por exemplo). */
-  h1,
-  h2,
-  h3,
-  .text-h1,
-  .text-h2,
-  .text-h3 {
-    @apply font-display;
-  }
-
-  h1 {
-    @apply text-h1;
-  }
-
-  h2 {
-    @apply text-h2;
-  }
-
-  h3 {
-    @apply text-h3;
-  }
-
-  /* Remove as setinhas dos inputs numéricos */
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-
     *,
     *::before,
     *::after {
@@ -114,96 +38,63 @@
   }
 }
 
+/* Títulos em Poppins (display), fora de @layer pra vencer a fonte do body na cascata.
+   Só a fonte — a cor fica por conta das classes (text-ink / text-white) em cada título. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
+}
+
 @layer components {
-  /* Grafismo de cruzinhas douradas ao fundo — eco do padrão de "+" do
-     carrossel. Só nas seções verdes, para não pesar a página inteira. */
-  main > section:nth-child(odd)::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, rgba(201, 162, 39, 0.15) 1.5px, transparent 1.5px),
-      linear-gradient(to bottom, rgba(201, 162, 39, 0.15) 1.5px, transparent 1.5px);
-    background-size: 92px 92px;
-    /* alinha o cruzamento das linhas com o centro do tile da máscara,
-       senão a máscara revela justamente o vão vazio e o padrão some */
-    background-position: 45.25px 45.25px;
-    /* recorta o grid contínuo, deixando só as cruzinhas dos cruzamentos */
-    -webkit-mask-image: radial-gradient(circle at center, #000 7px, transparent 7.5px);
-    -webkit-mask-size: 92px 92px;
-    mask-image: radial-gradient(circle at center, #000 7px, transparent 7.5px);
-    mask-size: 92px 92px;
-  }
-
-  /* Wrapper padrão de largura de conteúdo */
   .shell {
-    @apply relative z-10 mx-auto w-full max-w-shell px-5 md:px-8;
+    @apply mx-auto w-full max-w-shell px-5 md:px-8;
   }
 
-  /* Espaçamento vertical padrão das seções */
   .section {
     @apply py-14 md:py-20;
   }
 
-  /* Botão verde principal — sombra sólida inferior */
+  /* Botão de ação — verde, alto contraste */
   .btn-cta {
     @apply inline-flex w-full items-center justify-center gap-2 rounded-ctl bg-cta px-6 py-4
-           text-center font-bold text-white shadow-cta transition-all duration-150
-           hover:bg-cta-hover active:translate-y-1 active:shadow-cta-active
+           text-center text-[17px] font-bold text-white shadow-cta transition-all duration-150
+           hover:bg-cta-hover hover:-translate-y-0.5 active:translate-y-0
            focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
-           focus-visible:outline-gold;
+           focus-visible:outline-cta;
   }
 
-  /* Card / superfície elevada */
-  .surface {
-    @apply rounded-card border border-border bg-surface;
+  /* Botão secundário — contorno azul */
+  .btn-outline {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-ctl border-2 border-brand
+           bg-white px-6 py-4 text-center text-[17px] font-bold text-brand transition-colors
+           duration-150 hover:bg-brand-soft focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-brand;
   }
 
-  /* Moldura dourada — para o que precisa ler como "premium":
-     oferta, KPIs do relatório, citação da autoridade. */
-  .surface-gold {
-    @apply rounded-card border border-gold/35 bg-surface;
+  /* Card branco elevado */
+  .card {
+    @apply rounded-card border border-border bg-surface shadow-card;
   }
 
-  /* Marcador amarelo para valores em R$ */
-  .money {
-    @apply rounded-[4px] bg-highlight px-1.5 py-0.5 font-bold text-[#0a0d0b];
+  /* Etiqueta pequena (eyebrow) acima dos títulos */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-soft px-3.5 py-1.5 text-micro
+           font-bold uppercase tracking-wider text-brand;
   }
 
-  /* Selo de confiança */
+  /* Chip / selo de confiança */
   .trust-chip {
-    @apply inline-flex items-center gap-2 text-micro text-muted;
+    @apply inline-flex items-center gap-2 text-micro font-medium text-muted;
   }
 
-  /* Caixa de destaque em serifa itálica — o "balão" claro do carrossel,
-     traduzido para o dark mode com moldura dourada. */
-  .pull-quote {
-    @apply rounded-card border border-gold/30 bg-surface-2 px-5 py-4
-           font-display text-[1.0625rem] font-semibold italic leading-snug text-ink md:text-[1.1875rem];
+  /* Realce de texto em azul claro */
+  .hl {
+    @apply rounded bg-brand-soft px-1.5 py-0.5 font-semibold text-brand-dark;
   }
 
-  /* Fio dourado curto, usado como divisor decorativo */
-  .gold-rule {
-    @apply h-px w-16 bg-gold/60;
+  /* Fio curto decorativo (azul) */
+  .rule {
+    @apply h-1 w-12 rounded-full bg-brand;
   }
-
-  /* Valores monetários e percentuais ficam em sans: a Playfair usa algarismos
-     old-style (o 7 e o 9 descem da linha de base), o que atrapalha a leitura
-     de cifras. Títulos seguem em serifa. */
-  .num {
-    @apply font-sans tabular-nums;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* Serifa dos títulos — fora de @layer de propósito.                  */
-/* No CSS em camadas do Tailwind, regra SEM camada vence a camada base, */
-/* então isto garante a Playfair nos títulos por cima da fonte do body. */
-/* Mira só as tags h1/h2/h3 pra não pegar números (.num em <span>/<p>). */
-/* ------------------------------------------------------------------ */
-h1,
-h2,
-h3 {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
 }

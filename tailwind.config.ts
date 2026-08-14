@@ -1,16 +1,10 @@
 import type { Config } from "tailwindcss";
 
 /**
- * As cores de superfície (bg / surface / border / muted) são resolvidas em
- * runtime a partir de variáveis CSS, porque a landing alterna entre dois temas
- * escuros seção a seção — verde-petróleo e navy — como o carrossel do cliente.
- * Os temas vivem em globals.css (.theme-green / .theme-navy).
- *
- * O formato "R G B" (sem vírgulas) é o que permite o Tailwind aplicar o
- * modificador de opacidade em cima da variável: bg-surface/50 continua valendo.
+ * Tema CLARO / institucional (branco + azul) — v2.
+ * Página de conversão do Check-up do Rating Bancário (Especialista Roberto).
+ * Estrutura inspirada no padrão de funil do nicho; copy e design originais.
  */
-const themed = (v: string) => `rgb(var(${v}) / <alpha-value>)`;
-
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,16 +12,12 @@ const config: Config = {
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // Breakpoint único do projeto: 768px (mobile < 768 <= desktop)
     screens: {
       md: "768px",
       lg: "1024px",
       xl: "1440px",
     },
     extend: {
-      // A escala padrão do Tailwind pula 12/15/35/…, e o modificador de opacidade
-      // (bg-danger/12) só aceita valores que existam nela. Preenchemos as lacunas
-      // usadas no projeto para não termos classes que somem silenciosamente.
       opacity: {
         8: "0.08",
         12: "0.12",
@@ -40,56 +30,59 @@ const config: Config = {
         85: "0.85",
       },
       colors: {
-        // Trocam conforme o tema da seção
-        bg: themed("--c-bg"),
-        surface: themed("--c-surface"),
-        "surface-2": themed("--c-surface-2"),
-        border: themed("--c-border"),
-        muted: themed("--c-muted"),
+        // Fundos
+        bg: "#ffffff",
+        "bg-soft": "#f4f8fc", // seções alternadas / faixas suaves
+        surface: "#ffffff", // cards
+        "surface-soft": "#f4f8fc",
 
-        // Fixas em toda a página
-        ink: "#f5f2e9",
-        gold: {
-          DEFAULT: "#c9a227",
-          soft: "#e0c265",
-          deep: "#8a6f14",
-        },
-        royal: {
-          DEFAULT: "#2e7be8",
-          soft: "#5fa8ff",
-        },
-        // Cor de ação principal — azul (substitui o verde da versão anterior).
-        cta: {
+        // Texto
+        ink: "#0e1c2f", // títulos (navy quase preto)
+        body: "#33475b", // corpo
+        muted: "#64748b", // secundário
+
+        border: "#e3e9f1",
+
+        // Azul institucional (primária)
+        brand: {
           DEFAULT: "#1b6fe8",
-          hover: "#175fc7",
+          dark: "#1557b8",
+          soft: "#e8f1fe", // fundo de chips/realces claros
         },
-        danger: "#c1121f",
-        highlight: "#fff59d",
-        // "Positivo / confirmação" nesta marca é azul, não verde — assim todos os
-        // ícones de check (text-success) viram azuis sem editar componente por componente.
-        success: "#2e7be8",
+        navy: "#12294a", // faixas/rodapé escuros
+
+        // Ação (CTA) — verde, alto contraste de conversão
+        cta: {
+          DEFAULT: "#16a34a",
+          hover: "#15803d",
+        },
+
+        danger: "#dc2626",
+        "danger-soft": "#fef2f2",
+        success: "#16a34a",
+        star: "#f59e0b",
       },
       fontFamily: {
-        // Corpo/subtítulos: fonte arredondada, padronizada em todo o site.
-        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"],
-        // Só os títulos usam serifa editorial.
-        display: ["var(--font-playfair)", "Georgia", "Times New Roman", "serif"],
+        // Corpo — sans institucional
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Títulos — sans geométrica, moderna e confiável
+        display: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        h1: ["clamp(2.75rem, 5vw, 3.5rem)", { lineHeight: "1.05", letterSpacing: "-0.01em", fontWeight: "900" }],
-        h2: ["clamp(1.875rem, 3.4vw, 2.5rem)", { lineHeight: "1.12", letterSpacing: "-0.005em", fontWeight: "800" }],
-        h3: ["clamp(1.375rem, 2vw, 1.625rem)", { lineHeight: "1.22", fontWeight: "700" }],
-        body: ["clamp(1rem, 1.15vw, 1.125rem)", { lineHeight: "1.6" }],
+        h1: ["clamp(2.25rem, 4.6vw, 3.25rem)", { lineHeight: "1.08", letterSpacing: "-0.02em", fontWeight: "800" }],
+        h2: ["clamp(1.75rem, 3.2vw, 2.375rem)", { lineHeight: "1.14", letterSpacing: "-0.015em", fontWeight: "700" }],
+        h3: ["clamp(1.25rem, 1.9vw, 1.5rem)", { lineHeight: "1.24", letterSpacing: "-0.01em", fontWeight: "700" }],
+        body: ["clamp(1rem, 1.1vw, 1.125rem)", { lineHeight: "1.65" }],
         micro: ["clamp(0.8125rem, 0.9vw, 0.875rem)", { lineHeight: "1.5" }],
       },
       borderRadius: {
-        card: "14px",
+        card: "16px",
         ctl: "12px",
       },
       boxShadow: {
-        cta: "0 6px 0 rgba(0,0,0,.25)",
-        "cta-active": "0 2px 0 rgba(0,0,0,.25)",
-        gold: "0 0 0 1px rgba(201,162,39,.28)",
+        card: "0 1px 2px rgba(15,28,47,.04), 0 8px 24px -12px rgba(15,28,47,.15)",
+        "card-hover": "0 2px 4px rgba(15,28,47,.06), 0 16px 40px -16px rgba(15,28,47,.22)",
+        cta: "0 6px 16px -4px rgba(22,163,74,.5)",
       },
       maxWidth: {
         shell: "1120px",
