@@ -3,9 +3,9 @@ import { benefits } from "@/lib/copy";
 
 export default function Benefits() {
   return (
-    <section className="border-y border-border bg-bg-soft py-8 md:py-10">
+    <section className="bg-bg py-9 md:py-11">
       <div className="shell">
-        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-4">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           {benefits.items.map((item) => (
             <li key={item.title} className="flex items-start gap-3 text-left">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">

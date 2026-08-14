@@ -1,5 +1,5 @@
 /**
- * Copy da landing v2 — Check-up do Rating Bancário (Especialista Roberto).
+ * Copy da landing v2 — Diagnóstico Financeiro do Rating Bancário (Especialista Roberto).
  *
  * Tema claro/institucional. Estrutura de funil comum no nicho (revelação →
  * diferenciação → processo → entregável → especialista → oferta → FAQ → CTA),
@@ -16,7 +16,7 @@ const CHECKOUT_DESCONTO = "https://payfast.greenn.com.br/redirect/307507"; // R$
 
 export const brand = {
   name: "Roberto Nogueira",
-  product: "Check-up do Rating Bancário",
+  product: "Diagnóstico Financeiro do Rating Bancário",
   specialist: "Roberto Nogueira",
 } as const;
 
@@ -25,7 +25,7 @@ export const brand = {
 /* ------------------------------------------------------------------ */
 
 export const meta = {
-  title: "Check-up do Rating Bancário",
+  title: "Diagnóstico Financeiro do Rating Bancário",
   description:
     "Descubra o que os bancos realmente enxergam do seu CPF ou CNPJ no SCR/BACEN — e o que está travando o seu crédito. Relatório completo e reunião com especialista em até 48h úteis.",
 } as const;
@@ -37,8 +37,8 @@ export const meta = {
 export const hero = {
   eyebrow: "Dados oficiais do SCR / BACEN",
   h1: "Descubra o que o banco realmente vê no seu CPF ou CNPJ — e o que está travando o seu crédito",
-  sub: "O SPC e o Serasa mostram só uma fração da sua vida financeira. O Check-up revela o que os bancos enxergam de verdade antes de aprovar (ou negar) o seu crédito.",
-  cta: "Fazer meu Check-up agora",
+  sub: "O SPC e o Serasa mostram só uma fração da sua vida financeira. O Diagnóstico revela o que os bancos enxergam de verdade antes de aprovar (ou negar) o seu crédito.",
+  cta: "Fazer meu Diagnóstico agora",
   ctaHref: CHECKOUT,
   ctaSub: "Pagamento único · Reunião com especialista em até 48h úteis",
   badges: ["Dados oficiais SCR/BACEN", "Sem consulta que suja o nome", "100% online"],
@@ -53,7 +53,7 @@ export type Benefit = { title: string; text: string };
 
 export const benefits = {
   items: [
-    { title: "Reunião em até 48h úteis", text: "Um especialista entra em contato pra marcar a sua reunião." },
+    { title: "Um especialista fará o contato em até 48h úteis", text: "Pra marcar a sua reunião e apresentar o seu Diagnóstico." },
     { title: "Para CPF e CNPJ", text: "Serve pra pessoa física e pra empresa." },
     { title: "Com especialista de verdade", text: "Nada de robô: quem lê o seu caso entende do assunto." },
   ] satisfies Benefit[] as Benefit[],
@@ -106,7 +106,7 @@ export const process = {
   steps: [
     {
       n: "1",
-      title: "Você garante o seu Check-up",
+      title: "Você garante o seu Diagnóstico",
       text: "Pagamento único, à vista no PIX ou parcelado no cartão. Sem cadastro complicado e sem mensalidade.",
     },
     {
@@ -123,7 +123,7 @@ export const process = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* 4. O que vem no Check-up (entregável)                               */
+/* 4. O que vem no Diagnóstico (entregável)                               */
 /* ------------------------------------------------------------------ */
 
 export const deliverable = {
@@ -156,7 +156,7 @@ export const deliverable = {
       text: "RGI, cheque sem fundo (BACEN), protesto nacional e recuperação judicial cruzados no seu nome.",
     },
   ],
-  proofLabel: "Veja um exemplo real de como chega o seu Check-up",
+  proofLabel: "Veja um exemplo real de como chega o seu Diagnóstico",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -182,21 +182,21 @@ export const reportExample = {
       tabLabel: "Aprovado AAA",
       tone: "success",
       image: "/relatorio-aprovado.png",
-      imageAlt: "Exemplo de Check-up com resultado Aprovado (rating AAA)",
+      imageAlt: "Exemplo de Diagnóstico com resultado Aprovado (rating AAA)",
     },
     {
       id: "atencao",
       tabLabel: "Atenção B",
       tone: "warning",
       image: "/relatorio-atencao.png",
-      imageAlt: "Exemplo de Check-up com resultado em Atenção (rating B)",
+      imageAlt: "Exemplo de Diagnóstico com resultado em Atenção (rating B)",
     },
     {
       id: "reprovado",
       tabLabel: "Reprovado C-",
       tone: "danger",
       image: "/relatorio-reprovado.png",
-      imageAlt: "Exemplo de Check-up com resultado Reprovado (rating C-)",
+      imageAlt: "Exemplo de Diagnóstico com resultado Reprovado (rating C-)",
     },
   ] satisfies ReportTab[] as ReportTab[],
 } as const;
@@ -216,7 +216,7 @@ export const authority = {
     "Hoje ele traduz esses dados oficiais pra linguagem de gente normal e senta com cada cliente pra mostrar, na prática, o que está travando o crédito e qual é o caminho pra destravar.",
   ],
   quote:
-    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. O Check-up existe pra colocar essa informação na mão de quem é dono do CPF.",
+    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. O Diagnóstico existe pra colocar essa informação na mão de quem é dono do CPF.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -225,17 +225,17 @@ export const authority = {
 
 export const offer = {
   eyebrow: "Oferta desta página",
-  h2: "Garanta agora o seu Check-up do Rating Bancário",
+  h2: "Garanta agora o seu Diagnóstico Financeiro do Rating Bancário",
   lead: "Pagamento único. Sem mensalidade, sem pegadinha. Um raio-X do seu CPF ou CNPJ e uma reunião com especialista pra você saber exatamente o que fazer.",
   badge: "Vagas limitadas por semana",
-  productName: "Check-up do Rating Bancário",
+  productName: "Diagnóstico Financeiro do Rating Bancário",
   productSubtitle: "Relatório completo de 8 páginas + reunião com especialista.",
   priceOld: "R$ 199",
   priceLabel: "por apenas:",
   price: "R$ 97",
   priceComplement: "à vista no PIX",
   installments: "ou em 12x no cartão de crédito",
-  cta: "Fazer meu Check-up agora",
+  cta: "Fazer meu Diagnóstico agora",
   ctaHref: CHECKOUT,
   seals: [
     "Pagamento único, sem mensalidade",
@@ -255,22 +255,22 @@ export type FaqItem = { question: string; answer: string };
 export const faq = {
   eyebrow: "Ainda tem dúvida?",
   h2: "Perguntas frequentes",
-  lead: "As dúvidas mais comuns antes de fazer o seu Check-up.",
+  lead: "As dúvidas mais comuns antes de fazer o seu Diagnóstico.",
   items: [
     {
-      question: "Os dados do Check-up são confiáveis?",
+      question: "Os dados do Diagnóstico são confiáveis?",
       answer:
         "São. As informações vêm direto do SCR/BACEN (Sistema de Informações de Crédito do Banco Central), regulamentado pela Resolução BCB 4.571/2017 — a mesma base que o banco consulta antes de qualquer operação. Cruzamos ainda dados oficiais da Receita Federal e de cartórios públicos. Nada de fonte informal: tudo oficial, atualizado mensalmente e protegido pela LGPD.",
     },
     {
       question: "Isso vai fazer uma consulta que suja o meu nome?",
       answer:
-        "Não. O Check-up é uma leitura da sua situação nas bases oficiais — não é uma solicitação de crédito. Ele não gera negativação nem interfere no seu score.",
+        "Não. O Diagnóstico é uma leitura da sua situação nas bases oficiais — não é uma solicitação de crédito. Ele não gera negativação nem interfere no seu score.",
     },
     {
       question: "Qual a diferença pro SPC e pro Serasa?",
       answer:
-        "SPC e Serasa mostram basicamente dívida em atraso. O SCR/BACEN mostra o quadro completo: financiamentos, empréstimos, cartões, cheque especial, consórcios, parcelas em dia e a vencer, a sua nota de risco (AAA a C-) e a busca recente por crédito. É esse quadro completo que o banco olha — e que o seu Check-up revela.",
+        "SPC e Serasa mostram basicamente dívida em atraso. O SCR/BACEN mostra o quadro completo: financiamentos, empréstimos, cartões, cheque especial, consórcios, parcelas em dia e a vencer, a sua nota de risco (AAA a C-) e a busca recente por crédito. É esse quadro completo que o banco olha — e que o seu Diagnóstico revela.",
     },
     {
       question: "Em quanto tempo um especialista fala comigo?",
@@ -278,7 +278,7 @@ export const faq = {
         "Após a confirmação do pagamento, você preenche seus dados e, em até 48h úteis, um especialista entra em contato para marcar a sua reunião e apresentar o diagnóstico. A entrega é por reunião, não por WhatsApp.",
     },
     {
-      question: "O Check-up garante que meu crédito vai ser aprovado?",
+      question: "O Diagnóstico garante que meu crédito vai ser aprovado?",
       answer:
         "Não. É um diagnóstico: ele mostra o que o banco enxerga e o que está travando as suas aprovações. O resultado depende do que você faz a partir dessa informação — e é justamente nisso que o especialista te ajuda na reunião.",
     },
@@ -297,8 +297,8 @@ export const faq = {
 export const closing = {
   h2: "Pare de tentar no escuro. Veja o que o banco vê.",
   paragraph:
-    "Você já entendeu que o problema pode não estar onde você imagina. Faça o seu Check-up e descubra, com dados oficiais, o que está travando o seu crédito — com um especialista do seu lado pra te mostrar o caminho.",
-  cta: "Fazer meu Check-up agora",
+    "Você já entendeu que o problema pode não estar onde você imagina. Faça o seu Diagnóstico e descubra, com dados oficiais, o que está travando o seu crédito — com um especialista do seu lado pra te mostrar o caminho.",
+  cta: "Fazer meu Diagnóstico agora",
   ctaHref: CHECKOUT,
   meta: "Pagamento seguro. Em até 48h úteis um especialista entra em contato para marcar a sua reunião.",
   seals: [
@@ -316,7 +316,7 @@ export const closing = {
 export const footer = {
   about: {
     title: "Sobre",
-    body: "O Check-up do Rating Bancário é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
+    body: "O Diagnóstico Financeiro do Rating Bancário é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
   },
   contact: {
     title: "Contato",
@@ -344,7 +344,7 @@ export const footer = {
 
 export const exitOffer = {
   eyebrow: "Última chance",
-  title: { pre: "Você tá saindo ", hi: "sem", post: " seu Check-up" },
+  title: { pre: "Você tá saindo ", hi: "sem", post: " seu Diagnóstico" },
   body: {
     pre: "Fecha agora e, em ",
     hi: "até 48h úteis",
@@ -353,8 +353,8 @@ export const exitOffer = {
   priceLead: "De R$ 97 por apenas",
   priceNew: "R$ 77",
   paymentNote: "Pagamento único, sem mensalidade",
-  cta: "Fazer meu Check-up agora →",
+  cta: "Fazer meu Diagnóstico agora →",
   ctaHref: CHECKOUT_DESCONTO,
-  dismiss: "Não, prefiro sair sem o meu Check-up",
+  dismiss: "Não, prefiro sair sem o meu Diagnóstico",
   note: "Oferta válida só nesta sessão. Pagamento 100% seguro.",
 } as const;
