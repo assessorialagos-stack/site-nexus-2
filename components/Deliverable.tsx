@@ -8,19 +8,19 @@ export default function Deliverable() {
       <div className="shell">
         <SectionHeading eyebrow={deliverable.eyebrow} title={deliverable.h2} lead={deliverable.lead} />
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:mt-14 md:grid-cols-2 md:gap-5">
+        <ul className="mx-auto mt-10 max-w-2xl space-y-3 md:mt-12">
           {deliverable.items.map((item) => (
-            <div key={item.title} className="card flex items-start gap-4 p-5 md:p-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
+            <li key={item.title} className="card flex items-start gap-4 p-5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
                 <CheckIcon className="h-5 w-5" />
               </span>
               <div className="min-w-0">
                 <h3 className="text-h3 text-ink">{item.title}</h3>
-                <p className="mt-1.5 text-body text-muted break-words">{item.text}</p>
+                <p className="mt-1 text-body text-muted break-words">{item.text}</p>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

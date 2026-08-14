@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Benefits from "@/components/Benefits";
 import Differentiation from "@/components/Differentiation";
 import Process from "@/components/Process";
 import Deliverable from "@/components/Deliverable";
@@ -15,6 +16,7 @@ export default function Page() {
     <>
       <main>
         <Hero />
+        <Benefits />
         <Differentiation />
         <Process />
         <Deliverable />

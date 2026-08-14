@@ -1,3 +1,4 @@
+import SectionHeading from "@/components/SectionHeading";
 import { QuoteMarkIcon } from "@/components/Icons";
 import { authority } from "@/lib/copy";
 
@@ -5,7 +6,9 @@ export default function Authority() {
   return (
     <section id="especialista" className="section bg-bg-soft">
       <div className="shell">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,320px)_1fr] md:gap-12">
+        <SectionHeading title={authority.h2} />
+
+        <div className="mt-10 grid grid-cols-1 items-center gap-8 md:mt-14 md:grid-cols-[minmax(0,320px)_1fr] md:gap-12">
           {/* Foto */}
           <div className="mx-auto w-full max-w-[300px] md:mx-0 md:max-w-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -19,13 +22,8 @@ export default function Authority() {
 
           {/* Texto */}
           <div>
-            <span className="eyebrow">{authority.eyebrow}</span>
-            <h2 className="text-h2 mt-4 text-ink text-balance">{authority.h2}</h2>
-
-            <div className="mt-3">
-              <p className="text-h3 text-brand">{authority.name}</p>
-              <p className="mt-1 text-body text-muted">{authority.role}</p>
-            </div>
+            <p className="text-h3 text-brand">{authority.name}</p>
+            <p className="mt-1.5 text-body font-medium text-ink break-words">{authority.role}</p>
 
             <div className="mt-5 space-y-4">
               {authority.bio.map((p, i) => (

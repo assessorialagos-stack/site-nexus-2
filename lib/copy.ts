@@ -15,9 +15,9 @@ const CHECKOUT = "https://payfast.greenn.com.br/redirect/307493"; // R$ 97
 const CHECKOUT_DESCONTO = "https://payfast.greenn.com.br/redirect/307507"; // R$ 79 → R$ 77
 
 export const brand = {
-  name: "Especialista Roberto",
+  name: "Roberto Nogueira",
   product: "Check-up do Rating Bancário",
-  specialist: "Especialista Roberto",
+  specialist: "Roberto Nogueira",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -27,7 +27,7 @@ export const brand = {
 export const meta = {
   title: "Check-up do Rating Bancário",
   description:
-    "Descubra o que os bancos realmente enxergam do seu CPF no SCR/BACEN — e o que está travando o seu crédito. Relatório completo e reunião com especialista em até 48h úteis.",
+    "Descubra o que os bancos realmente enxergam do seu CPF ou CNPJ no SCR/BACEN — e o que está travando o seu crédito. Relatório completo e reunião com especialista em até 48h úteis.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -36,7 +36,7 @@ export const meta = {
 
 export const hero = {
   eyebrow: "Dados oficiais do SCR / BACEN",
-  h1: "Descubra o que o banco realmente vê no seu CPF — e o que está travando o seu crédito",
+  h1: "Descubra o que o banco realmente vê no seu CPF ou CNPJ — e o que está travando o seu crédito",
   sub: "O SPC e o Serasa mostram só uma fração da sua vida financeira. O Check-up revela o que os bancos enxergam de verdade antes de aprovar (ou negar) o seu crédito.",
   cta: "Fazer meu Check-up agora",
   ctaHref: CHECKOUT,
@@ -46,13 +46,27 @@ export const hero = {
 } as const;
 
 /* ------------------------------------------------------------------ */
+/* 1b. Faixa de benefícios (3 destaques rápidos)                       */
+/* ------------------------------------------------------------------ */
+
+export type Benefit = { title: string; text: string };
+
+export const benefits = {
+  items: [
+    { title: "Reunião em até 48h úteis", text: "Um especialista entra em contato pra marcar a sua reunião." },
+    { title: "Para CPF e CNPJ", text: "Serve pra pessoa física e pra empresa." },
+    { title: "Com especialista de verdade", text: "Nada de robô: quem lê o seu caso entende do assunto." },
+  ] satisfies Benefit[] as Benefit[],
+} as const;
+
+/* ------------------------------------------------------------------ */
 /* 2. Diferenciação — o que você vê x o que o banco vê                 */
 /* ------------------------------------------------------------------ */
 
 export const differentiation = {
   eyebrow: "A parte que ninguém te mostra",
   h2: "O que o Serasa mostra é só a ponta do iceberg",
-  lead: "Quando um banco analisa o seu CPF, ele não olha só se o seu nome está sujo. Ele consulta a base oficial do Banco Central — e é lá que está a informação que decide a sua aprovação.",
+  lead: "Quando um banco analisa o seu CPF ou CNPJ, ele não olha só se o seu nome está sujo. Ele consulta a base oficial do Banco Central — e é lá que está a informação que decide a sua aprovação.",
   visible: {
     tag: "O que VOCÊ vê",
     title: "SPC & Serasa",
@@ -114,7 +128,7 @@ export const process = {
 
 export const deliverable = {
   eyebrow: "O que você recebe",
-  h2: "Um raio-X completo do seu CPF em 8 páginas",
+  h2: "Um raio-X completo do seu CPF ou CNPJ em 8 páginas",
   lead: "Tudo o que o banco consulta sobre você, reunido, traduzido e explicado por quem entende de Rating Bancário.",
   items: [
     {
@@ -192,12 +206,11 @@ export const reportExample = {
 /* ------------------------------------------------------------------ */
 
 export const authority = {
-  eyebrow: "Quem conduz o seu Check-up",
-  h2: "Você não vai encarar isso sozinho",
-  name: "Especialista Roberto",
-  role: "Especialista em análise de crédito bancário",
+  h2: "Quem assina",
+  name: "Roberto Nogueira",
+  role: "Especialista Financeiro e em Direito Bancário e Promotor de Justiça Aposentado",
   photo: "/especialista.jpg",
-  photoAlt: "Especialista Roberto, especialista em análise de crédito bancário",
+  photoAlt: "Roberto Nogueira, especialista financeiro e em direito bancário",
   bio: [
     "O Roberto passou anos do outro lado do balcão, lendo o que os bancos leem antes de dizer sim ou não a um CPF. Foi ali que percebeu uma coisa: a maioria das pessoas é negada por motivos que elas nem sabem que existem.",
     "Hoje ele traduz esses dados oficiais pra linguagem de gente normal e senta com cada cliente pra mostrar, na prática, o que está travando o crédito e qual é o caminho pra destravar.",
@@ -213,7 +226,7 @@ export const authority = {
 export const offer = {
   eyebrow: "Oferta desta página",
   h2: "Garanta agora o seu Check-up do Rating Bancário",
-  lead: "Pagamento único. Sem mensalidade, sem pegadinha. Um raio-X do seu CPF e uma reunião com especialista pra você saber exatamente o que fazer.",
+  lead: "Pagamento único. Sem mensalidade, sem pegadinha. Um raio-X do seu CPF ou CNPJ e uma reunião com especialista pra você saber exatamente o que fazer.",
   badge: "Vagas limitadas por semana",
   productName: "Check-up do Rating Bancário",
   productSubtitle: "Relatório completo de 8 páginas + reunião com especialista.",
@@ -311,13 +324,13 @@ export const footer = {
   },
   institutional: {
     title: "Institucional",
-    name: "Especialista Roberto",
+    name: "Roberto Nogueira",
   },
   links: [
     { label: "Política de Privacidade", href: "#" },
     { label: "Termos de Uso", href: "#" },
   ],
-  copyright: "© 2026 Especialista Roberto. Todos os direitos reservados.",
+  copyright: "© 2026 Roberto Nogueira. Todos os direitos reservados.",
   credit: {
     prefix: "Site desenvolvido pela ",
     name: "Assessoria Lagos",
