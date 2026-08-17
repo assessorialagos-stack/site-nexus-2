@@ -1,64 +1,27 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
-import { reportExample, deliverable, type ReportTabId } from "@/lib/copy";
-import { AlertIcon, CheckIcon, XIcon } from "@/components/Icons";
-
-type Tone = "success" | "warning" | "danger";
-
-const TONE_TEXT: Record<Tone, string> = {
-  success: "text-cta",
-  warning: "text-star",
-  danger: "text-danger",
-};
-
-function ToneIcon({ tone, className }: { tone: Tone; className?: string }) {
-  if (tone === "success") return <CheckIcon className={className} />;
-  if (tone === "danger") return <XIcon className={className} />;
-  return <AlertIcon className={className} />;
-}
-
-const tabDomId = (id: ReportTabId) => `report-tab-${id}`;
-const PANEL_DOM_ID = "report-panel";
+import { useCallback, useRef, useState } from "react";
+import { reportExample } from "@/lib/copy";
+import { AlertIcon, ChevronDownIcon } from "@/components/Icons";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function ReportExample() {
-  const tabs = reportExample.tabs;
-  const [activeId, setActiveId] = useState<ReportTabId>(tabs[0].id);
-  const [missing, setMissing] = useState<Record<string, boolean>>({});
-  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const slides = reportExample.slides;
+  const n = slides.length;
+  const [i, setI] = useState(0);
+  const touchX = useRef<number | null>(null);
 
-  const activeIndex = tabs.findIndex((t) => t.id === activeId);
-  const active = tabs[activeIndex] ?? tabs[0];
+  const go = useCallback(
+    (delta: number) => setI((cur) => (cur + delta + n) % n),
+    [n],
+  );
 
-  function focusTab(index: number) {
-    const next = (index + tabs.length) % tabs.length;
-    setActiveId(tabs[next].id);
-    tabRefs.current[next]?.focus();
-  }
-
-  function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-      event.preventDefault();
-      focusTab(index + 1);
-    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-      event.preventDefault();
-      focusTab(index - 1);
-    } else if (event.key === "Home") {
-      event.preventDefault();
-      focusTab(0);
-    } else if (event.key === "End") {
-      event.preventDefault();
-      focusTab(tabs.length - 1);
-    }
-  }
+  const current = slides[i];
 
   return (
     <section id="exemplo" className="section bg-bg">
       <div className="shell">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-h2 text-ink text-balance">{deliverable.proofLabel}</h2>
-          <div className="rule mx-auto mt-5" />
-        </div>
+        <SectionHeading eyebrow={reportExample.eyebrow} title={reportExample.h2} lead={reportExample.lead} />
 
         {/* Aviso */}
         <div className="mt-6 flex justify-center">
@@ -68,71 +31,93 @@ export default function ReportExample() {
           </p>
         </div>
 
-        {/* Abas */}
+        {/* Carrossel */}
         <div
-          role="tablist"
-          aria-label={deliverable.proofLabel}
-          className="mx-auto mt-8 flex w-full max-w-xl flex-col gap-1.5 rounded-ctl border border-border bg-bg-soft p-1.5 md:flex-row"
-        >
-          {tabs.map((tab, index) => {
-            const isActive = tab.id === activeId;
-            return (
-              <button
-                key={tab.id}
-                id={tabDomId(tab.id)}
-                ref={(el) => {
-                  tabRefs.current[index] = el;
-                }}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={PANEL_DOM_ID}
-                tabIndex={isActive ? 0 : -1}
-                onClick={() => setActiveId(tab.id)}
-                onKeyDown={(event) => onTabKeyDown(event, index)}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-[9px] px-3 py-2.5 text-center text-body font-semibold transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
-                  isActive ? "bg-white text-ink shadow-card" : "text-muted hover:text-ink"
-                }`}
-              >
-                <ToneIcon tone={tab.tone} className={`h-4 w-4 shrink-0 ${TONE_TEXT[tab.tone]}`} />
-                <span className="break-words">{tab.tabLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Painel */}
-        <div
-          key={activeId}
-          id={PANEL_DOM_ID}
-          role="tabpanel"
-          aria-labelledby={tabDomId(active.id)}
+          className="mx-auto mt-8 w-full max-w-[600px]"
+          role="group"
+          aria-roledescription="carrossel"
+          aria-label={reportExample.h2}
           tabIndex={0}
-          className="card animate-fade-slide-up mx-auto mt-4 max-w-2xl p-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:p-4"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              go(-1);
+            } else if (e.key === "ArrowRight") {
+              e.preventDefault();
+              go(1);
+            }
+          }}
         >
-          {missing[active.image] ? (
-            <div className="flex min-h-[320px] flex-col items-center justify-center gap-3 rounded-ctl border border-dashed border-border bg-bg-soft p-8 text-center">
-              <ToneIcon tone={active.tone} className={`h-10 w-10 shrink-0 ${TONE_TEXT[active.tone]}`} />
-              <p className="text-body font-semibold text-ink">Exemplo · {active.tabLabel}</p>
-              <p className="text-micro text-muted break-words">
-                Adicione a imagem em <span className="font-medium text-ink">public{active.image}</span>
-              </p>
-            </div>
-          ) : (
-            // eslint-disable-next-line @next/next/no-img-element
+          <div
+            className="card overflow-hidden p-2 md:p-3"
+            onTouchStart={(e) => {
+              touchX.current = e.touches[0].clientX;
+            }}
+            onTouchEnd={(e) => {
+              if (touchX.current == null) return;
+              const dx = e.changedTouches[0].clientX - touchX.current;
+              if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
+              touchX.current = null;
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={active.image}
-              alt={active.imageAlt}
-              onError={() => setMissing((m) => ({ ...m, [active.image]: true }))}
-              className="w-full rounded-ctl border border-border"
+              key={current.image}
+              src={current.image}
+              alt={current.alt}
+              className="animate-fade-in w-full rounded-ctl border border-border"
               loading="lazy"
             />
-          )}
+          </div>
 
-          <p className="mt-4 border-t border-border pt-4 text-center text-micro text-muted break-words">
-            {reportExample.panelFooter}
+          {/* Legenda */}
+          <p aria-live="polite" className="mt-4 text-center text-body font-semibold text-ink break-words">
+            {current.caption}
+          </p>
+
+          {/* Controles */}
+          <div className="mt-4 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="Página anterior"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-white text-brand shadow-card transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <ChevronDownIcon className="h-5 w-5 rotate-90" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {slides.map((s, idx) => (
+                <button
+                  key={s.image}
+                  type="button"
+                  onClick={() => setI(idx)}
+                  aria-label={`Ir para a página ${idx + 1}`}
+                  aria-current={idx === i ? "true" : undefined}
+                  className={`h-2.5 rounded-full transition-all ${
+                    idx === i ? "w-6 bg-brand" : "w-2.5 bg-border hover:bg-muted"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="Próxima página"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-white text-brand shadow-card transition-colors hover:bg-brand-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <ChevronDownIcon className="h-5 w-5 -rotate-90" />
+            </button>
+          </div>
+
+          <p className="mt-3 text-center text-micro font-medium text-muted">
+            {i + 1} de {n}
           </p>
         </div>
+
+        <p className="mx-auto mt-8 max-w-2xl text-center text-micro text-muted">{reportExample.note}</p>
       </div>
     </section>
   );

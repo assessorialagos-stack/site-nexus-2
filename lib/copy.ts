@@ -160,45 +160,27 @@ export const deliverable = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* 5. Exemplo do relatório (abas + imagens redigidas)                  */
+/* 5. Exemplo do relatório — carrossel (páginas do PDF redigidas)      */
 /* ------------------------------------------------------------------ */
 
-export type ReportTabId = "aprovado" | "atencao" | "reprovado";
-
-export type ReportTab = {
-  id: ReportTabId;
-  tabLabel: string;
-  tone: "success" | "warning" | "danger";
-  image: string;
-  imageAlt: string;
-};
+export type ReportSlide = { image: string; caption: string; alt: string };
 
 export const reportExample = {
-  warning: "Exemplo ilustrativo · dados pessoais protegidos",
-  panelFooter: "+ 7 páginas com Resumo, Detalhes e Carteira de Crédito completa",
-  tabs: [
-    {
-      id: "aprovado",
-      tabLabel: "Aprovado AAA",
-      tone: "success",
-      image: "/relatorio-aprovado.png",
-      imageAlt: "Exemplo de Diagnóstico com resultado Aprovado (rating AAA)",
-    },
-    {
-      id: "atencao",
-      tabLabel: "Atenção B",
-      tone: "warning",
-      image: "/relatorio-atencao.png",
-      imageAlt: "Exemplo de Diagnóstico com resultado em Atenção (rating B)",
-    },
-    {
-      id: "reprovado",
-      tabLabel: "Reprovado C-",
-      tone: "danger",
-      image: "/relatorio-reprovado.png",
-      imageAlt: "Exemplo de Diagnóstico com resultado Reprovado (rating C-)",
-    },
-  ] satisfies ReportTab[] as ReportTab[],
+  eyebrow: "Exemplo real",
+  h2: "Veja, página por página, como chega o seu Diagnóstico Financeiro Completo",
+  lead: "Um relatório completo com média de 8 páginas: score de rating, comprometimento de renda, limite sugerido, ocorrências, protestos e a sua carteira de crédito aberta. Deslize para ver cada seção.",
+  warning: "Exemplo real · dados pessoais do titular protegidos",
+  note: "Os dados pessoais do titular foram borrados para proteger a privacidade. Você recebe o seu com os seus próprios dados.",
+  slides: [
+    { image: "/relatorio-p1.png", caption: "Resumo executivo e score de rating", alt: "Página 1 do relatório — resumo executivo e score de rating" },
+    { image: "/relatorio-p2.png", caption: "Leitura técnica e dados cadastrais", alt: "Página 2 do relatório — leitura técnica e dados cadastrais" },
+    { image: "/relatorio-p3.png", caption: "Ocorrências e restrições", alt: "Página 3 do relatório — ocorrências e restrições" },
+    { image: "/relatorio-p4.png", caption: "Bureau e restrições — detalhamento", alt: "Página 4 do relatório — bureau e restrições detalhado" },
+    { image: "/relatorio-p5.png", caption: "Protestos em cartório e histórico de consultas", alt: "Página 5 do relatório — protestos e histórico de consultas" },
+    { image: "/relatorio-p6.png", caption: "Carteira de crédito — SCR/BACEN", alt: "Página 6 do relatório — carteira de crédito no SCR/BACEN" },
+    { image: "/relatorio-p7.png", caption: "Carteira de crédito — detalhamento completo", alt: "Página 7 do relatório — carteira de crédito detalhada" },
+    { image: "/relatorio-p8.png", caption: "Síntese final e resumo geral", alt: "Página 8 do relatório — síntese final e resumo geral" },
+  ] satisfies ReportSlide[] as ReportSlide[],
 } as const;
 
 /* ------------------------------------------------------------------ */
