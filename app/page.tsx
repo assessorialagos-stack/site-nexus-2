@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Benefits from "@/components/Benefits";
 import Differentiation from "@/components/Differentiation";
@@ -14,6 +15,7 @@ import ExitIntentPopup from "@/components/ExitIntentPopup";
 export default function Page() {
   return (
     <>
+      <Header />
       <main>
         <Hero />
         <Benefits />

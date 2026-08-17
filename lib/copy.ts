@@ -1,14 +1,14 @@
 /**
- * Copy da landing v2 — Diagnóstico Financeiro do Rating Bancário (Especialista Roberto).
+ * Copy da landing v2 — Diagnóstico Financeiro Completo (Especialista Roberto).
  *
  * Tema claro/institucional. Estrutura de funil comum no nicho (revelação →
  * diferenciação → processo → entregável → especialista → oferta → FAQ → CTA),
  * com copy ORIGINAL escrita para o produto do Roberto.
  *
  * REGRAS DE CONTEÚDO:
- * - Entrega: NÃO é WhatsApp. Em até 48h úteis um especialista entra em contato
- *   para marcar a reunião.
- * - Sem CNPJ / razão social. O responsável é "Especialista Roberto".
+ * - Entrega: reunião VIP por WhatsApp ou Online. Em até 48h um especialista
+ *   entra em contato para marcá-la.
+ * - Sem CNPJ da empresa / razão social. O responsável é "Roberto Nogueira".
  */
 
 const CHECKOUT = "https://payfast.greenn.com.br/redirect/307493"; // R$ 97
@@ -16,7 +16,7 @@ const CHECKOUT_DESCONTO = "https://payfast.greenn.com.br/redirect/307507"; // R$
 
 export const brand = {
   name: "Roberto Nogueira",
-  product: "Diagnóstico Financeiro do Rating Bancário",
+  product: "Diagnóstico Financeiro Completo",
   specialist: "Roberto Nogueira",
 } as const;
 
@@ -25,9 +25,9 @@ export const brand = {
 /* ------------------------------------------------------------------ */
 
 export const meta = {
-  title: "Diagnóstico Financeiro do Rating Bancário",
+  title: "Diagnóstico Financeiro Completo",
   description:
-    "Descubra o que os bancos realmente enxergam do seu CPF ou CNPJ no SCR/BACEN — e o que está travando o seu crédito. Relatório completo e reunião com especialista em até 48h úteis.",
+    "Descubra o que os bancos realmente enxergam do seu CPF ou CNPJ no SCR/BACEN — e o que está travando o seu crédito. Relatório completo e reunião com especialista em até 48h.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -37,10 +37,10 @@ export const meta = {
 export const hero = {
   eyebrow: "Dados oficiais do SCR / BACEN",
   h1: "Descubra o que o banco realmente vê no seu CPF ou CNPJ — e o que está travando o seu crédito",
-  sub: "O SPC e o Serasa mostram só uma fração da sua vida financeira. O Diagnóstico revela o que os bancos enxergam de verdade antes de aprovar (ou negar) o seu crédito.",
+  sub: "O SPC e o Serasa mostram só uma fração da sua vida financeira. O Diagnóstico Financeiro Completo revela o que os bancos enxergam de verdade antes de aprovar (ou negar) o seu crédito.",
   cta: "Fazer meu Diagnóstico agora",
   ctaHref: CHECKOUT,
-  ctaSub: "Pagamento único · Reunião com especialista em até 48h úteis",
+  ctaSub: "Pagamento único · Um especialista fará contato em até 48h para agendar sua reunião por WhatsApp ou Online",
   badges: ["Dados oficiais SCR/BACEN", "Sem consulta que suja o nome", "100% online"],
   videoCaption: "Aperte o play e entenda em 2 minutos",
 } as const;
@@ -53,7 +53,7 @@ export type Benefit = { title: string; text: string };
 
 export const benefits = {
   items: [
-    { title: "Um especialista fará o contato em até 48h úteis", text: "Pra marcar a sua reunião e apresentar o seu Diagnóstico." },
+    { title: "Um especialista fará o contato em até 48h", text: "Para marcar uma reunião VIP e exclusiva." },
     { title: "Para CPF e CNPJ", text: "Serve pra pessoa física e pra empresa." },
     { title: "Com especialista de verdade", text: "Nada de robô: quem lê o seu caso entende do assunto." },
   ] satisfies Benefit[] as Benefit[],
@@ -106,18 +106,18 @@ export const process = {
   steps: [
     {
       n: "1",
-      title: "Você garante o seu Diagnóstico",
+      title: "Você garante o seu Diagnóstico Financeiro Completo",
       text: "Pagamento único, à vista no PIX ou parcelado no cartão. Sem cadastro complicado e sem mensalidade.",
     },
     {
       n: "2",
-      title: "A gente levanta e analisa o seu CPF",
+      title: "A gente levanta e analisa o seu CPF ou CNPJ",
       text: "Cruzamos mais de 15 fontes oficiais — SCR/BACEN, Receita Federal, cartórios, CCF e outras — e um especialista analisa o seu caso ponto a ponto.",
     },
     {
       n: "3",
       title: "Um especialista marca a sua reunião",
-      text: "Em até 48h úteis, um especialista entra em contato pra marcar uma reunião e apresentar o seu diagnóstico completo, com o que fazer a seguir.",
+      text: "Em até 48h, um especialista entra em contato pra marcar uma reunião e apresentar o seu Diagnóstico Financeiro Completo, com o que fazer a seguir.",
     },
   ] satisfies ProcessStep[] as ProcessStep[],
 } as const;
@@ -149,14 +149,14 @@ export const deliverable = {
     },
     {
       title: "Carteira de crédito detalhada",
-      text: "Cada operação ativa no seu CPF, com valor, vencimento e situação — inclusive as que você já nem lembra.",
+      text: "Cada operação ativa no seu CPF ou CNPJ, com valor, vencimento e situação — inclusive as que você já nem lembra.",
     },
     {
       title: "Registros que travam a aprovação",
       text: "RGI, cheque sem fundo (BACEN), protesto nacional e recuperação judicial cruzados no seu nome.",
     },
   ],
-  proofLabel: "Veja um exemplo real de como chega o seu Diagnóstico",
+  proofLabel: "Veja um exemplo real de como chega o seu Diagnóstico Financeiro Completo",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -212,11 +212,11 @@ export const authority = {
   photo: "/especialista.jpg",
   photoAlt: "Roberto Nogueira, especialista financeiro e em direito bancário",
   bio: [
-    "O Roberto passou anos do outro lado do balcão, lendo o que os bancos leem antes de dizer sim ou não a um CPF. Foi ali que percebeu uma coisa: a maioria das pessoas é negada por motivos que elas nem sabem que existem.",
+    "O Roberto passou anos do outro lado do balcão, lendo o que os bancos leem antes de dizer sim ou não a um CPF ou CNPJ. Foi ali que percebeu uma coisa: a maioria das pessoas é negada por motivos que elas nem sabem que existem.",
     "Hoje ele traduz esses dados oficiais pra linguagem de gente normal e senta com cada cliente pra mostrar, na prática, o que está travando o crédito e qual é o caminho pra destravar.",
   ],
   quote:
-    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. O Diagnóstico existe pra colocar essa informação na mão de quem é dono do CPF.",
+    "A maioria dos brasileiros nunca leu o relatório que os bancos usam pra decidir o crédito do próprio nome. O Diagnóstico existe pra colocar essa informação na mão de quem é dono do CPF ou CNPJ.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -225,11 +225,11 @@ export const authority = {
 
 export const offer = {
   eyebrow: "Oferta desta página",
-  h2: "Garanta agora o seu Diagnóstico Financeiro do Rating Bancário",
+  h2: "Garanta agora o seu Diagnóstico Financeiro Completo",
   lead: "Pagamento único. Sem mensalidade, sem pegadinha. Um raio-X do seu CPF ou CNPJ e uma reunião com especialista pra você saber exatamente o que fazer.",
   badge: "Vagas limitadas por semana",
-  productName: "Diagnóstico Financeiro do Rating Bancário",
-  productSubtitle: "Relatório completo de 8 páginas + reunião com especialista.",
+  productName: "Diagnóstico Financeiro Completo",
+  productSubtitle: "Relatório completo com média de 8 páginas + reunião com especialista.",
   priceOld: "R$ 199",
   priceLabel: "por apenas:",
   price: "R$ 97",
@@ -240,10 +240,10 @@ export const offer = {
   seals: [
     "Pagamento único, sem mensalidade",
     "Dados oficiais e protegidos (LGPD)",
-    "Reunião com especialista em até 48h úteis",
+    "Reunião com especialista em até 48h",
     "Ambiente de pagamento 100% seguro",
   ],
-  guarantee: "Você paga uma vez e recebe o diagnóstico completo do seu CPF, com acompanhamento de um especialista de verdade.",
+  guarantee: "Você paga uma vez e recebe o Diagnóstico Financeiro Completo do seu CPF ou CNPJ, com acompanhamento de um especialista de verdade.",
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -275,7 +275,7 @@ export const faq = {
     {
       question: "Em quanto tempo um especialista fala comigo?",
       answer:
-        "Após a confirmação do pagamento, você preenche seus dados e, em até 48h úteis, um especialista entra em contato para marcar a sua reunião e apresentar o diagnóstico. A entrega é por reunião, não por WhatsApp.",
+        "Após a confirmação do pagamento, você preenche seus dados e, em até 48h, um especialista entra em contato para marcar a sua reunião e apresentar o Diagnóstico Financeiro Completo. A reunião acontece por WhatsApp ou Online.",
     },
     {
       question: "O Diagnóstico garante que meu crédito vai ser aprovado?",
@@ -300,7 +300,7 @@ export const closing = {
     "Você já entendeu que o problema pode não estar onde você imagina. Faça o seu Diagnóstico e descubra, com dados oficiais, o que está travando o seu crédito — com um especialista do seu lado pra te mostrar o caminho.",
   cta: "Fazer meu Diagnóstico agora",
   ctaHref: CHECKOUT,
-  meta: "Pagamento seguro. Em até 48h úteis um especialista entra em contato para marcar a sua reunião.",
+  meta: "Pagamento seguro. Em até 48h um especialista entra em contato para marcar a sua reunião por WhatsApp ou Online.",
   seals: [
     "Dados oficiais SCR/BACEN",
     "Reunião com especialista",
@@ -316,7 +316,7 @@ export const closing = {
 export const footer = {
   about: {
     title: "Sobre",
-    body: "O Diagnóstico Financeiro do Rating Bancário é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
+    body: "O Diagnóstico Financeiro Completo é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
   },
   contact: {
     title: "Contato",
@@ -347,7 +347,7 @@ export const exitOffer = {
   title: { pre: "Você tá saindo ", hi: "sem", post: " seu Diagnóstico" },
   body: {
     pre: "Fecha agora e, em ",
-    hi: "até 48h úteis",
+    hi: "até 48h",
     post: ", um especialista entra em contato pra marcar a sua reunião.",
   },
   priceLead: "De R$ 97 por apenas",
