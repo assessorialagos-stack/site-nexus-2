@@ -296,22 +296,6 @@ export const closing = {
 /* ------------------------------------------------------------------ */
 
 export const footer = {
-  about: {
-    title: "Sobre",
-    body: "O Diagnóstico Financeiro Completo é um serviço informativo de análise financeira, baseado em dados oficiais do SCR/BACEN (Resolução BCB 4.571/2017). Não constitui promessa de aprovação de crédito. Este site não é vinculado ao Facebook nem ao Instagram.",
-  },
-  contact: {
-    title: "Contato",
-    hours: "Atendimento: seg–sex, 9h–18h",
-  },
-  institutional: {
-    title: "Institucional",
-    name: "Roberto Nogueira",
-  },
-  links: [
-    { label: "Política de Privacidade", href: "#" },
-    { label: "Termos de Uso", href: "#" },
-  ],
   copyright: "© 2026 Roberto Nogueira. Todos os direitos reservados.",
   credit: {
     prefix: "Site desenvolvido pela ",
