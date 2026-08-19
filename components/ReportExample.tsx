@@ -5,16 +5,17 @@ import { reportExample } from "@/lib/copy";
 import { AlertIcon, ChevronDownIcon } from "@/components/Icons";
 import SectionHeading from "@/components/SectionHeading";
 
+/** Proporção nativa das páginas do relatório (1191x1683). */
+const PAGE_W = 1191;
+const PAGE_H = 1683;
+
 export default function ReportExample() {
   const slides = reportExample.slides;
   const n = slides.length;
   const [i, setI] = useState(0);
   const touchX = useRef<number | null>(null);
 
-  const go = useCallback(
-    (delta: number) => setI((cur) => (cur + delta + n) % n),
-    [n],
-  );
+  const go = useCallback((delta: number) => setI((cur) => (cur + delta + n) % n), [n]);
 
   const current = slides[i];
 
@@ -60,18 +61,33 @@ export default function ReportExample() {
               touchX.current = null;
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              key={current.image}
-              src={current.image}
-              alt={current.alt}
-              className="animate-fade-in w-full rounded-ctl border border-border"
-              loading="lazy"
-            />
+            {/*
+              O quadro tem proporção fixa e todas as páginas ficam empilhadas dentro dele,
+              trocando só a opacidade. Assim a altura NUNCA muda ao avançar de página —
+              era isso que fazia a página saltar/rolar sozinha a cada troca.
+            */}
+            <div className="relative w-full overflow-hidden rounded-ctl border border-border bg-white" style={{ aspectRatio: `${PAGE_W} / ${PAGE_H}` }}>
+              {slides.map((s, idx) => (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={s.image}
+                  src={s.image}
+                  alt={s.alt}
+                  width={PAGE_W}
+                  height={PAGE_H}
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  aria-hidden={idx !== i}
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                    idx === i ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Legenda */}
-          <p aria-live="polite" className="mt-4 text-center text-body font-semibold text-ink break-words">
+          <p aria-live="polite" className="mt-4 min-h-[3rem] text-center text-body font-semibold text-ink break-words md:min-h-[2rem]">
             {current.caption}
           </p>
 
@@ -86,7 +102,6 @@ export default function ReportExample() {
               <ChevronDownIcon className="h-5 w-5 rotate-90" />
             </button>
 
-            {/* Dots */}
             <div className="flex flex-wrap items-center justify-center gap-2">
               {slides.map((s, idx) => (
                 <button

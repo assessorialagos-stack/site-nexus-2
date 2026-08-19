@@ -128,7 +128,7 @@ export const process = {
 
 export const deliverable = {
   eyebrow: "O que você recebe",
-  h2: "Um raio-X completo do seu CPF ou CNPJ em 8 páginas",
+  h2: "Um raio-X completo do seu CPF ou CNPJ em ± 8 páginas",
   lead: "Tudo o que o banco consulta sobre você, reunido, traduzido e explicado por quem entende de Rating Bancário.",
   items: [
     {
@@ -172,14 +172,14 @@ export const reportExample = {
   warning: "Exemplo real · dados pessoais do titular protegidos",
   note: "Os dados pessoais do titular foram borrados para proteger a privacidade. Você recebe o seu com os seus próprios dados.",
   slides: [
-    { image: "/relatorio-p1.png", caption: "Resumo executivo e score de rating", alt: "Página 1 do relatório — resumo executivo e score de rating" },
-    { image: "/relatorio-p2.png", caption: "Leitura técnica e dados cadastrais", alt: "Página 2 do relatório — leitura técnica e dados cadastrais" },
-    { image: "/relatorio-p3.png", caption: "Ocorrências e restrições", alt: "Página 3 do relatório — ocorrências e restrições" },
-    { image: "/relatorio-p4.png", caption: "Bureau e restrições — detalhamento", alt: "Página 4 do relatório — bureau e restrições detalhado" },
-    { image: "/relatorio-p5.png", caption: "Protestos em cartório e histórico de consultas", alt: "Página 5 do relatório — protestos e histórico de consultas" },
-    { image: "/relatorio-p6.png", caption: "Carteira de crédito — SCR/BACEN", alt: "Página 6 do relatório — carteira de crédito no SCR/BACEN" },
-    { image: "/relatorio-p7.png", caption: "Carteira de crédito — detalhamento completo", alt: "Página 7 do relatório — carteira de crédito detalhada" },
-    { image: "/relatorio-p8.png", caption: "Síntese final e resumo geral", alt: "Página 8 do relatório — síntese final e resumo geral" },
+    { image: "/relatorio-p1.webp", caption: "Resumo executivo e score de rating", alt: "Página 1 do relatório — resumo executivo e score de rating" },
+    { image: "/relatorio-p2.webp", caption: "Leitura técnica e dados cadastrais", alt: "Página 2 do relatório — leitura técnica e dados cadastrais" },
+    { image: "/relatorio-p3.webp", caption: "Ocorrências e restrições", alt: "Página 3 do relatório — ocorrências e restrições" },
+    { image: "/relatorio-p4.webp", caption: "Bureau e restrições — detalhamento", alt: "Página 4 do relatório — bureau e restrições detalhado" },
+    { image: "/relatorio-p5.webp", caption: "Protestos em cartório e histórico de consultas", alt: "Página 5 do relatório — protestos e histórico de consultas" },
+    { image: "/relatorio-p6.webp", caption: "Carteira de crédito — SCR/BACEN", alt: "Página 6 do relatório — carteira de crédito no SCR/BACEN" },
+    { image: "/relatorio-p7.webp", caption: "Carteira de crédito — detalhamento completo", alt: "Página 7 do relatório — carteira de crédito detalhada" },
+    { image: "/relatorio-p8.webp", caption: "Síntese final e resumo geral", alt: "Página 8 do relatório — síntese final e resumo geral" },
   ] satisfies ReportSlide[] as ReportSlide[],
 } as const;
 
