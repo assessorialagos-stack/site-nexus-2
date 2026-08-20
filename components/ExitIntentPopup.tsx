@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { exitOffer } from "@/lib/copy";
 import { XIcon, AlertIcon, CheckIcon } from "@/components/Icons";
+import { trackEvent } from "@/lib/track";
 
 const SESSION_KEY = "exitOfferShown";
 
@@ -140,7 +141,14 @@ export default function ExitIntentPopup() {
           </p>
 
           <div className="mt-6">
-            <a href={exitOffer.ctaHref} className="btn-cta" onClick={() => setOpen(false)}>
+            <a
+              href={exitOffer.ctaHref}
+              className="btn-cta"
+              onClick={() => {
+                trackEvent("InitiateCheckout", { value: 77, currency: "BRL", content_name: "Oferta de saida" });
+                setOpen(false);
+              }}
+            >
               {exitOffer.cta}
             </a>
           </div>

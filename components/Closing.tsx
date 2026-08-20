@@ -1,5 +1,6 @@
 import { CheckIcon } from "@/components/Icons";
 import { closing } from "@/lib/copy";
+import CtaLink from "@/components/CtaLink";
 
 export default function Closing() {
   return (
@@ -12,9 +13,9 @@ export default function Closing() {
           <p className="mx-auto mt-4 max-w-xl text-body text-white/75">{closing.paragraph}</p>
 
           <div className="mx-auto mt-8 max-w-md">
-            <a href={closing.ctaHref} className="btn-cta">
+            <CtaLink href={closing.ctaHref} value={97} contentName="Diagnostico Financeiro Completo">
               {closing.cta}
-            </a>
+            </CtaLink>
           </div>
 
           <p className="mx-auto mt-4 max-w-lg text-micro text-white/60">{closing.meta}</p>

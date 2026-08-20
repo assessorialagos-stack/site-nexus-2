@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { meta } from "@/lib/copy";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 // Corpo — sans institucional.
@@ -45,7 +46,10 @@ export default function RootLayout({
       <head>
         <meta name="robots" content="noindex, nofollow" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <MetaPixel />
+      </body>
     </html>
   );
 }

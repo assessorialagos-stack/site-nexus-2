@@ -1,6 +1,7 @@
 import SectionHeading from "@/components/SectionHeading";
 import { BoltIcon, CheckIcon, ShieldIcon } from "@/components/Icons";
 import { offer } from "@/lib/copy";
+import CtaLink from "@/components/CtaLink";
 
 export default function Offer() {
   return (
@@ -32,9 +33,9 @@ export default function Offer() {
             <p className="mt-3 text-body font-semibold text-ink">{offer.installments}</p>
 
             <div className="mt-6">
-              <a href={offer.ctaHref} className="btn-cta">
+              <CtaLink href={offer.ctaHref} value={97} contentName="Diagnostico Financeiro Completo">
                 {offer.cta}
-              </a>
+              </CtaLink>
             </div>
 
             <ul className="mt-6 space-y-2.5 text-left">

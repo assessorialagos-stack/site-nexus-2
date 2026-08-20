@@ -1,5 +1,6 @@
 import { CheckIcon } from "@/components/Icons";
 import { hero } from "@/lib/copy";
+import CtaLink from "@/components/CtaLink";
 
 export default function Hero() {
   return (
@@ -33,9 +34,9 @@ export default function Hero() {
 
           {/* CTA abaixo do vídeo */}
           <div className="mx-auto mt-8 max-w-md">
-            <a href={hero.ctaHref} className="btn-cta">
+            <CtaLink href={hero.ctaHref} value={97} contentName="Diagnostico Financeiro Completo">
               {hero.cta}
-            </a>
+            </CtaLink>
             <p className="mt-3 text-micro font-medium text-muted">{hero.ctaSub}</p>
           </div>
 
