@@ -7,11 +7,19 @@ import { trackEvent } from "@/lib/track";
 
 const SESSION_KEY = "exitOfferShown";
 
+/** Só começa a valer depois disso, pra não pular na cara de quem acabou de chegar. */
+const ARMAR_APOS = 2500;
+/** Parada longa sem tocar em nada (e sem vídeo rodando). */
+const PARADO_POR = 40000;
+
 /**
  * Pop-up de saída (exit-intent), 100% no próprio site — sem plataforma terceira.
- * Dispara uma única vez por sessão na intenção de sair:
- *  - Desktop: cursor sobe pra fora da janela.
- *  - Mobile: toque no "voltar" (armadilha de histórico).
+ * Aparece uma única vez por sessão.
+ *
+ * No computador dá pra ler a intenção de sair pelo cursor. No celular isso não
+ * existe: abrir o menu do navegador ou tocar na barra de abas não gera evento
+ * nenhum na página. Por isso o celular usa os sinais que realmente dão pra
+ * detectar — voltar, sair do app/aba, subir a tela correndo e parada longa.
  */
 export default function ExitIntentPopup() {
   const [open, setOpen] = useState(false);
@@ -34,32 +42,85 @@ export default function ExitIntentPopup() {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(SESSION_KEY)) return;
 
-    let armed = false;
-    const armTimer = window.setTimeout(() => {
-      armed = true;
-    }, 2500);
+    let armado = false;
+    const armar = window.setTimeout(() => {
+      armado = true;
+    }, ARMAR_APOS);
 
-    const onMouseOut = (e: MouseEvent) => {
-      if (!armed) return;
-      if (e.clientY <= 0 && !e.relatedTarget) trigger();
+    const limpar: Array<() => void> = [];
+    const ouvir = (
+      alvo: Window | Document,
+      evento: string,
+      fn: EventListenerOrEventListenerObject,
+      opts?: AddEventListenerOptions,
+    ) => {
+      alvo.addEventListener(evento, fn, opts);
+      limpar.push(() => alvo.removeEventListener(evento, fn, opts));
     };
 
-    const isTouch =
+    /* --- Computador: o cursor sai pelo topo da janela --- */
+    ouvir(document, "mouseout", ((e: MouseEvent) => {
+      if (armado && e.clientY <= 0 && !e.relatedTarget) trigger();
+    }) as EventListener);
+
+    const ehToque =
       window.matchMedia?.("(pointer: coarse)").matches || "ontouchstart" in window;
-    const onPopState = () => {
-      if (armed) trigger();
-    };
-    if (isTouch) {
+
+    if (ehToque) {
+      /* --- 1) Botão voltar --- */
       history.pushState(null, "", window.location.href);
-      window.addEventListener("popstate", onPopState);
+      ouvir(window, "popstate", () => {
+        if (armado) trigger();
+      });
+
+      /* --- 2) Trocou de aba, minimizou ou foi pra outro app --- */
+      ouvir(document, "visibilitychange", () => {
+        if (armado && document.visibilityState === "hidden") trigger();
+      });
+
+      /* --- 3) Subiu a tela correndo (padrão de quem vai fechar) --- */
+      let ultimoY = window.scrollY;
+      let ultimoT = Date.now();
+      let maisFundo = window.scrollY;
+      ouvir(
+        window,
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          const t = Date.now();
+          const subiu = ultimoY - y;
+          const dt = t - ultimoT || 1;
+          maisFundo = Math.max(maisFundo, y);
+          // subida rápida, chegando perto do topo, depois de já ter descido a página
+          if (armado && subiu > 0 && subiu / dt > 1.2 && y < 400 && maisFundo > 600) {
+            trigger();
+          }
+          ultimoY = y;
+          ultimoT = t;
+        },
+        { passive: true },
+      );
+
+      /* --- 4) Parada longa (sem contar quem está assistindo ao vídeo) --- */
+      let parado: number | undefined;
+      const vídeoRodando = () =>
+        Array.from(document.querySelectorAll("video")).some((v) => !v.paused && !v.ended);
+      const reiniciarParado = () => {
+        window.clearTimeout(parado);
+        parado = window.setTimeout(() => {
+          if (armado && document.visibilityState === "visible" && !vídeoRodando()) trigger();
+        }, PARADO_POR);
+      };
+      (["touchstart", "scroll", "click", "keydown"] as const).forEach((ev) =>
+        ouvir(window, ev, reiniciarParado, { passive: true }),
+      );
+      reiniciarParado();
+      limpar.push(() => window.clearTimeout(parado));
     }
 
-    document.addEventListener("mouseout", onMouseOut);
-
     return () => {
-      window.clearTimeout(armTimer);
-      document.removeEventListener("mouseout", onMouseOut);
-      window.removeEventListener("popstate", onPopState);
+      window.clearTimeout(armar);
+      limpar.forEach((fn) => fn());
     };
   }, [trigger]);
 
