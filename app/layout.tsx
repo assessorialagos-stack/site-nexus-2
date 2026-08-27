@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { meta } from "@/lib/copy";
 import MetaPixel from "@/components/MetaPixel";
+import Clarity from "@/components/Clarity";
 import "./globals.css";
 
 // Corpo — sans institucional.
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body>
         {children}
         <MetaPixel />
+        <Clarity />
       </body>
     </html>
   );
