@@ -43,6 +43,7 @@ export const hero = {
   ctaSub: "Pagamento único · Um especialista fará contato em até 48h para agendar sua reunião por WhatsApp ou Online",
   badges: ["Dados oficiais SCR/BACEN", "Sem consulta que suja o nome", "100% online"],
   videoCaption: "Aperte o play e entenda em 2 minutos",
+  videoGate: "Assista ao vídeo completo para liberar o restante da página",
 } as const;
 
 /* ------------------------------------------------------------------ */

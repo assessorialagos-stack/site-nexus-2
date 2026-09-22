@@ -19,3 +19,6 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# fontes de video (pesadas, nao vao pro repo)
+/videos-originais/
